@@ -1,29 +1,5 @@
 {
-  "name": "wdd330-personal-project",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint **/*.js",
-    "format": "prettier --write **/*.{html,css,js}"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/milamelo4/wdd330-personal-project.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/milamelo4/wdd330-personal-project/issues"
-  },
-  "homepage": "https://github.com/milamelo4/wdd330-personal-project#readme",
   "devDependencies": {
-    "eslint": "^9.5.0",
-    "prettier": "^3.3.2"
+    "vite": "^5.3.2"
   }
-
 }
-
-
