@@ -1,5 +1,18 @@
 {
   "devDependencies": {
     "vite": "^5.3.2"
-  }
+  },
+  "name": "project",
+  "version": "3.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+  "start": "vite",
+  "build": "vite build --emptyOutDir",
+  "preview": "vite preview",
+  "lint": "eslint *.js src/**/*.js",
+  "format": "prettier --ignore-path ./.gitignore --write \"./**/*.{html,json,js,ts,css}\"",
+  "test": "jest"
+}
+
 }
