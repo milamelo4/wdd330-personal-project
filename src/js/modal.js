@@ -1,4 +1,4 @@
-import formatDate from "./utils";
+import { formatDate } from "./utils.js";
 let clicked = null
 
  function openModal(date) {

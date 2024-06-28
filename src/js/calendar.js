@@ -1,5 +1,5 @@
 import { openModal } from "./modal.js";
-import formatDate from "./utils.js";
+
 
 let nav = 0; // Which month we are in.
 let clicked = null; // Whichever day clicked
