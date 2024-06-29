@@ -1,137 +1,84 @@
-import { openModal } from "./modal.js";
+import { openModal, saveEvent, deleteEvent, closeModal } from "./modal.js";
+import { getLocalStorage, setLocalStorage, qs, setContent, getDateInfo } from "./utils.js";
 
-
-let nav = 0; // Which month we are in.
-let clicked = null; // Whichever day clicked
-let events = localStorage.getItem("events")
-  ? JSON.parse(localStorage.getItem("events")) // If exists
-  : []; // If not return an empty array.
-
-const calendar = document.getElementById("calendar");
-const newEventModal = document.getElementById("newEventModal");
-const deleteEventModal = document.getElementById("deleteEventModal");
-const backDrop = document.getElementById("modalBackDrop");
-const eventTitleInput = document.getElementById("eventTitleInput");
 const weekdays = [
-  "Sunday", // 0
-  "Monday", // 1
-  "Tuesday", // 2
-  "Wednesday", // 3
-  "Thursday", // 4
-  "Friday", // 5
-  "Saturday", // 6
-];
+  'Sunday', // 0
+  'Monday', // 1
+  'Tuesday', // 2
+  'Wednesday', // 3
+  'Thursday', // 4
+  'Friday', // 5
+  'Saturday', // 6
+]
+let nav = 0
+let events = getLocalStorage('events') || []
 
-function saveEvent() {
-  if (eventTitleInput.value) {
-    eventTitleInput.classList.remove("error");
-    events.push({
-      date: clicked,
-      title: eventTitleInput.value,
-    });
-    localStorage.setItem("events", JSON.stringify(events));
-    document.getElementById("startDate").innerHTML = 
-    `<li>Today is your first day</li>`;
+const calendar = qs('#calendar')
 
-    closeModal();
-  } else {
-    eventTitleInput.classList.add("error");
-  }
-}
-
-function closeModal() {
-  eventTitleInput.classList.remove("error");
-  newEventModal.style.display = "none";
-  deleteEventModal.style.display = "none";
-  backDrop.style.display = "none";
-  eventTitleInput.value = "";
-  clicked = null;
-  load();
-}
-
-function deleteEvent() {
-  events = events.filter((e) => e.date !== clicked);
-  localStorage.setItem("events", JSON.stringify(events));
-  closeModal();
-}
-
-function initBtn() {
-  document.getElementById("nextButton").addEventListener("click", () => {
-    nav++;
-    load();
-  });
-
-  document.getElementById("backButton").addEventListener("click", () => {
-    nav--;
-    load();
-  });
-
-  document.getElementById("saveButton").onclick = saveEvent;
-  document.getElementById("cancelButton").onclick = closeModal;
-  document
-    .getElementById("deleteButton")
-    .addEventListener("click", deleteEvent);
-  document.getElementById("closeButton").addEventListener("click", closeModal);
-}
-
-function load() {
-  const dt = new Date();
+// Generates and displays the calendar for the current month (or a different month if nav buttons have been used)
+export function load() {
+  const dt = new Date() // Fri Jun 28 2024 14:42:56 GMT-0600 (Mountain Daylight Time)
   if (nav !== 0) {
-    dt.setMonth(new Date().getMonth() + nav);
+    dt.setMonth(new Date().getMonth() + nav) // Adjust the month based on the navigation value
   }
 
-  const day = dt.getDate();
-  const month = dt.getMonth();
-  const year = dt.getFullYear();
+  const { day, month, year, daysInMonth, firstDayOfMonth, dateString } = getDateInfo(dt)
+  
+  // Split where theres a comma and return index 0 
+  
+  setContent('#monthDisplay',`${dt.toLocaleDateString('en-us', { month: 'long' })} ${year}`)
+  const paddingDays = weekdays.indexOf(dateString);
+  displayCalendar(paddingDays, daysInMonth, day, month, year);
+}
 
-  const daysInMonth = new Date(year, month + 1, 0).getDate();
-  const firstDayOfMonth = new Date(year, month, 1);
-  const dateString = firstDayOfMonth.toLocaleDateString("en-us", {
-    weekday: "long",
-    year: "numeric",
-    month: "numeric",
-    day: "numeric",
-  });
+// Display Calendar
+function displayCalendar(paddingDays, daysInMonth, currDay, currMonth, currYear) {
+  calendar.innerHTML = "" // Clear calendar
 
-  const paddingDays = weekdays.indexOf(dateString.split(", ")[0]);
+  for (let i = 0; i < paddingDays + daysInMonth; i++) {
+    const daySquare = document.createElement('div')
+    daySquare.classList.add('day')
 
-  document.getElementById("monthDisplay").innerHTML = 
-    `${dt.toLocaleDateString("en-us", { month: "long" })} ${year}`
-  ;
+    if (i >= paddingDays) {
+      const dayOfMonth = i - paddingDays + 1
+      daySquare.innerHTML = dayOfMonth
 
-  calendar.innerHTML = "";
+      const dayString = `${currMonth + 1}/${dayOfMonth}/${currYear}`
+      const eventForDay = events.find((e) => e.date === dayString)
 
-  for (let i = 1; i <= paddingDays + daysInMonth; i++) {
-    const daySquare = document.createElement("div");
-    daySquare.classList.add("day");
-    const dayString = `${month + 1}/${i - paddingDays}/${year}`;
-    
+      // Highlight current day
+      if (dayOfMonth === currDay && currMonth === new Date().getMonth()) {
+        daySquare.classList.add('currentDay')
+      }
 
-   if (i > paddingDays) {
-     daySquare.innerHTML = `${i - paddingDays}`;
-     const eventForDay = events.find((e) => e.date == dayString);
+      if (eventForDay) {
+        const eventDiv = document.createElement('div')
+        eventDiv.classList.add('event');
+        eventDiv.innerHTML = eventForDay.title
+        daySquare.appendChild(eventDiv)
+      }
 
-     if (i - paddingDays == day) {
-       // current day display
-       daySquare.classList.add("currentDay");
-     }
+      daySquare.onclick = () => openModal(dayString)
+    } else {
+      daySquare.classList.add('padding')
+    }
 
-     if (eventForDay) {
-       const eventDiv = document.createElement("div");
-       eventDiv.classList.add("event");
-       eventDiv.innerText = eventForDay.title;
-       daySquare.appendChild(eventDiv);
-     }
-     daySquare.addEventListener("click", () => openModal(dayString));
-   } else {
-     daySquare.classList.add("padding");
-   }
-    calendar.appendChild(daySquare);
+    calendar.appendChild(daySquare)
   }
 }
 
-initBtn();
-load();
+// Back and Next btn
+export function initBtn() {
+  qs('#nextButton').onclick = () => { nav++, load()}
+  qs("#backButton").onclick = () => { nav--, load()}
+  qs("#cancelButton").onclick = () => closeModal();
+  qs("#saveButton").onclick = () => saveEvent();
+  qs("#deleteButton").onclick = () => deleteEvent();
+  qs("#closeButton").onclick = () => closeModal();
+}
+
+
+
 
 // const url = "https://women-health-and-birth-control.p.rapidapi.com/health";
 // const options = {

@@ -4,12 +4,12 @@
 
  :root {
      /* Colors */
-     --calendar-color: #ceaad8;
-     --header-color: #7c2213;
-     --btn-background: #154a60;
+     --calendar-color: rgb(226,147,176);
+     --header-color: rgb(167, 4, 75);
+     --btn-background: rgb(225,255,255);
      --day-hover: #ffc6c2;
      --current-day: #d0d9f6b7;
-     --calendar-days: #346597;
+     --calendar-days: rgb(147,139,54);
 
      /* Fonts */
      --heading-font: 'Courier New', Courier, monospace;
@@ -100,15 +100,15 @@
 
  #header button,
  button {
-     background-color: var(--btn-background);
-     color: whitesmoke;
+     background-color: var(--header-color);
+     color: rgb(255,255,255);
      font-size: 16px;
      border: none;
      outline: none;
 
      &:hover {
          background-color: white;
-         color: var(--btn-background);
+         color: var(--calendar-color);
          box-shadow: 0 0 10px var(--btn-background);
          font-weight: 600;
          transition: all .3s ease;
