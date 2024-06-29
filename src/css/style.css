@@ -28,7 +28,7 @@
  }
  html {
     content: "";
-    background-image: url("/images/pexels-pixabay-262713.jpg");
+    background-image: url("../images/pexels-pixabay-262713.jpg");
     height: 100%;
     width: 100%;
     background-position: center;
