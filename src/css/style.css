@@ -4,12 +4,12 @@
 
  :root {
      /* Colors */
-     --calendar-color: rgb(226,147,176);
-     --header-color: rgb(167, 4, 75);
-     --btn-background: rgb(225,255,255);
-     --day-hover: #ffc6c2;
-     --current-day: #d0d9f6b7;
-     --calendar-days: rgb(147,139,54);
+     --calendar-color: hsl(338, 58%, 73%);
+     --header-color: hsl(334, 95%, 34%);
+     --btn-background: hsl(180, 100%, 94%);
+     --day-hover: hsl(4, 100%, 88%);
+     --current-day: hsla(226, 55%, 88%, 0.718);
+     --calendar-days: hsl(55, 45%, 33%);
 
      /* Fonts */
      --heading-font: 'Courier New', Courier, monospace;
@@ -20,12 +20,21 @@
 
  }
 
- body,
- html {
+ body{
      margin: 0;
      padding: 0;
      box-sizing: border-box;
-     height: fit-content;
+   
+ }
+ html {
+    content: "";
+    background-image: url("/images/pexels-pixabay-262713.jpg");
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
  }
 
 
@@ -33,8 +42,8 @@
 
  .body {
      display: flex;
-     margin-top: 50px;
-     justify-content: center;
+ 
+    
      scroll-behavior: smooth;
      font-family: var(--nunito-sans);
 
@@ -58,6 +67,7 @@
      display: flex;
      justify-content: space-between;
      font-weight: 800;
+     
  }
 
  .drop {
@@ -76,16 +86,26 @@
  } */
  h1 {
      display: block;
-     padding: 2%;
+   
      margin-top: 0;
+    
      text-align: center;
      font-family: var(--test);
      color: var(--btn-background);
+     text-shadow: 0px 0px 5px var(--header-color);
 
 
  }
+ .redDot {
+    color: var(--header-color);
+    font-size: 52px;
+    text-shadow: none;
+    
+    
+    
+ }
 
- .bg {
+ /* .bg {
      position: relative;
      background-image: url('../images/pexels-pixabay-262713.jpg');
      background-size: 100% 200%;
@@ -95,7 +115,7 @@
      background-size: cover;
      height: 1000px;
      background-color: rgba(0, 0, 0, 0)
- }
+ } */
 
 
  #header button,
@@ -117,12 +137,13 @@
 
  #container {
      z-index: 999;
-     position: absolute;
-     top: 10%;
+     /* position: absolute;
+     top: 15%; */
      width: 700px;
-     height: fit-content;
+     margin: auto;
      background-color: var(--calendar-color);
      padding: 2% 1%;
+     margin-bottom: 20px;
 
 
  }
@@ -136,6 +157,7 @@
      font-size: 18px;
      text-align: center;
      justify-content: space-between;
+    text-shadow: 1px 1px 1px black;
 
 
  }
