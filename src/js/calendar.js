@@ -1,5 +1,5 @@
 import { openModal, saveEvent, deleteEvent, closeModal } from "./modal.js";
-import { getLocalStorage, setLocalStorage, qs, setContent, getDateInfo } from "./utils.js";
+import { getLocalStorage, setLocalStorage, qs, setContent, getDateInfo, capitalize } from "./utils.js";
 
 const weekdays = [
   'Sunday', // 0
@@ -17,6 +17,9 @@ const calendar = qs('#calendar')
 
 // Generates and displays the calendar for the current month (or a different month if nav buttons have been used)
 export function load() {
+  welcomeMsg()
+  
+
   const dt = new Date() // Fri Jun 28 2024 14:42:56 GMT-0600 (Mountain Daylight Time)
   if (nav !== 0) {
     dt.setMonth(new Date().getMonth() + nav) // Adjust the month based on the navigation value
@@ -30,6 +33,28 @@ export function load() {
   const paddingDays = weekdays.indexOf(dateString);
   displayCalendar(paddingDays, daysInMonth, day, month, year);
 }
+
+function welcomeMsg() {
+  const userN = qs("#userName");
+  // welcome guest
+  const nameValue = getLocalStorage('userName') || 'Guest';
+  
+  let charInx = 0
+  const welcomeMessage = `🩷 Welcome ${capitalize(nameValue)}!`
+
+  function type() {
+  if (charInx < welcomeMessage.length) {
+    userN.textContent += welcomeMessage.charAt(charInx)
+    charInx++;
+    setTimeout(type, 200) // Adjust typing speed (milliseconds)
+   }
+  }
+  type()
+  }
+  
+document.addEventListener("DOMContentLoaded", function () {
+  typeWelcomeMessage();
+});
 
 // Display Calendar
 function displayCalendar(paddingDays, daysInMonth, currDay, currMonth, currYear) {
