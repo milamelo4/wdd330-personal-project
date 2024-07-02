@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="website icon" type="png" href="../images/cardiogram.png" alt="Medical icons created by Freepik - Flaticon" title="medical icons">
     <script type="module" src="./js/main.js" defer></script>
     <title>Calendar</title>
 </head>
@@ -13,10 +14,13 @@
 
     <div class="bg">
         <h1 class="welcome-msg"><span id="userName"></span></h1>
-        <h2>Your<span class="redDot">.</span>Calendar</h2>
-        <div class="body">
-            <div id="container">
-                <div id="header">
+        <h2></h2>
+        <div class="main-body">
+            <div id="container" class="main-container">
+                <div class="logo-img">
+            <img src="../images/logo-no-background2.png" alt="https://logo.com/dashboard/your-logo-files">
+        </div>
+                <div id="header" class="calendar-header">
                     <div id="monthDisplay"></div>
                     <div>
                         <button id="backButton">Back</button>
@@ -25,7 +29,7 @@
                 </div>
 
                 <div class="caleContainer">
-                    <div id="weekdays">
+                    <div id="weekdays" class="weekdays">
                         <div>Sun</div>
                         <div>Mon</div>
                         <div>Tue</div>
@@ -34,17 +38,17 @@
                         <div>Fri</div>
                         <div>Sat</div>
                     </div>
-                    <div id="calendar"></div>
+                    <div id="calendar" class="calendar"></div>
                 </div>
                 <div id="output"></div>
 
             </div>
         </div>
     </div>
-    <div id="newEventModal">
+    <div id="newEventModal" class="newEventModal">
         <h2>Note</h2>
 
-        <input id="eventTitleInput" placeholder="Event Title" />
+        <input id="eventTitleInput" placeholder="Event Title" class="eventTitleInput">
 
         <label for="moods">
             <input type="radio" name="moods" id="moods"> Symptoms
@@ -64,10 +68,10 @@
         <button id="cancelButton">Cancel</button>
     </div>
 
-    <div id="deleteEventModal">
+    <div id="deleteEventModal" class="deleteEventModal">
         <h2>Event</h2>
 
-        <p id="eventText"></p>
+        <p id="eventText" class="eventText"></p>
 
         <button id="deleteButton">Delete</button>
         <button id="closeButton">Close</button>

@@ -1,5 +1,5 @@
-import { openModal, saveEvent, deleteEvent, closeModal } from "./modal.js";
-import { getLocalStorage, setLocalStorage, qs, setContent, getDateInfo, capitalize } from "./utils.js";
+import { openModal, saveEvent, deleteEvent, closeModal } from "./modal.mjs";
+import { getLocalStorage, setLocalStorage, qs, setContent, getDateInfo, capitalize } from "./utils.mjs";
 
 const weekdays = [
   'Sunday', // 0
@@ -17,8 +17,6 @@ const calendar = qs('#calendar')
 
 // Generates and displays the calendar for the current month (or a different month if nav buttons have been used)
 export function load() {
-  welcomeMsg()
-  
 
   const dt = new Date() // Fri Jun 28 2024 14:42:56 GMT-0600 (Mountain Daylight Time)
   if (nav !== 0) {
@@ -35,26 +33,36 @@ export function load() {
 }
 
 function welcomeMsg() {
-  const userN = qs("#userName");
+  const userN = qs("#userName")
+  let welcomeMsgDisplay = false
+  if (welcomeMsgDisplay) return
+  
   // welcome guest
-  const nameValue = getLocalStorage('userName') || 'Guest';
+  const nameValue = getLocalStorage('userName') || 'Guest'
   
   let charInx = 0
-  const welcomeMessage = `🩷 Welcome ${capitalize(nameValue)}!`
+  const welcomeMessage = `Welcome ${capitalize(nameValue)}!`
 
   function type() {
+    
   if (charInx < welcomeMessage.length) {
     userN.textContent += welcomeMessage.charAt(charInx)
     charInx++;
-    setTimeout(type, 200) // Adjust typing speed (milliseconds)
-   }
+    setTimeout(type, 200);
+    
+   } 
+   else { welcomeMsgDisplay = true }// Don't display msg again
   }
+
+  // call the function
   type()
   }
   
 document.addEventListener("DOMContentLoaded", function () {
-  typeWelcomeMessage();
-});
+  welcomeMsg()
+  
+})
+
 
 // Display Calendar
 function displayCalendar(paddingDays, daysInMonth, currDay, currMonth, currYear) {
@@ -96,10 +104,10 @@ function displayCalendar(paddingDays, daysInMonth, currDay, currMonth, currYear)
 export function initBtn() {
   qs('#nextButton').onclick = () => { nav++, load()}
   qs("#backButton").onclick = () => { nav--, load()}
-  qs("#cancelButton").onclick = () => closeModal();
-  qs("#saveButton").onclick = () => saveEvent();
-  qs("#deleteButton").onclick = () => deleteEvent();
-  qs("#closeButton").onclick = () => closeModal();
+  qs("#cancelButton").onclick = () => closeModal()
+  qs("#saveButton").onclick = () => saveEvent()
+  qs("#deleteButton").onclick = () => deleteEvent()
+  qs("#closeButton").onclick = () => closeModal()
 }
 
 

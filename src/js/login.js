@@ -1,4 +1,4 @@
-import { qs, setLocalStorage } from "./utils.js"
+import { qs, setLocalStorage } from "./utils.mjs"
 
 const loginForm = qs('#loginForm')
 const userName = qs('#userName')
@@ -9,6 +9,8 @@ const emailError = qs('#email + span.error')
 
 // check email
 userEmail.addEventListener('input', (e) => {
+  const s = new URLSearchParams('userName')
+  console.log(s)
     if (userEmail.validity.valid) {
         emailError.textContent = ''
         emailError.className = 'error'
@@ -33,19 +35,19 @@ loginForm.addEventListener("submit", function (event) {
 
 
 function showEmailError() {
-    if (userEmail.validity.valueMissing) {
-      emailError.innerHTML = 'You need to enter a valid email address'
+  if (userEmail.validity.valueMissing) {
+    emailError.innerHTML = 'You need to enter a valid email address'
 
-    } else if (userEmail.typeMismatch) {
-      emailError.innerHTML = 'Entered value needs to be an email address.'
+  } else if (userEmail.typeMismatch) {
+    emailError.innerHTML = 'Entered value needs to be an email address.'
 
-    } else if (userEmail.validity.patternMismatch) {
-      emailError.innerHTML = 'Please enter a valid email address format.'
+  } else if (userEmail.validity.patternMismatch) {
+    emailError.innerHTML = 'Please enter a valid email address format.'
 
-    } else if (userEmail.validity.tooShort) {
-      emailError.innerHTML = `Email should be at least ${email.minLength} characters; you entered ${email.value.length}.`
+  } else if (userEmail.validity.tooShort) {
+    emailError.innerHTML = `Email should be at least ${email.minLength} characters; you entered ${email.value.length}.`
 
-    }
-     emailError.className = 'error active'
+  }
+    emailError.className = 'error active'
 }
   

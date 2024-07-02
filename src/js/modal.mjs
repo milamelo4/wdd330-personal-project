@@ -1,5 +1,5 @@
 import { load } from "./calendar.js";
-import { formatDate, setLocalStorage, qs, getLocalStorage } from "./utils.js";
+import { formatDate, setLocalStorage, qs, getLocalStorage } from "./utils.mjs";
 
 let clicked = null
 const newEventModal = qs('#newEventModal')
