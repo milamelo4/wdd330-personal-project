@@ -1,21 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playwrite+NG+Modern:wght@100..400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playwrite+DE+Grund:wght@100..400&family=Playwrite+MX:wght@100..400&family=Playwrite+NG+Modern:wght@100..400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC&display=swap');
 
 :root {
     /* Colors */
-    --light-pink: hsl(338, 58%, 73%);
+    /* --light-pink: hsl(338, 58%, 73%);
     --dark-pink: rgb(169, 4, 76);
     --btn-background: hsl(180, 100%, 94%);
     --lighter-pink: hsl(4, 100%, 88%);
     --light-blue: hsla(226, 55%, 88%, 0.718);
-    --light-lime: hsl(55, 45%, 33%);
+    --light-lime: hsl(55, 45%, 33%); */
+    --lt: #b159c7ea;
+    --light-pink: #C68CD5;
+    --dark-pink: #451C5E;
+    --btn-background: hsl(180, 100%, 94%);
+    --lighter-pink: hsl(4, 100%, 88%);
+    --light-blue: hsla(226, 55%, 88%, 0.718);
+    --light-lime: #9C60B6;
 
     /* Fonts */
     --heading-font: 'Courier New', Courier, monospace;
     --nunito-sans: "Nunito Sans", sans-serif;
     --header: "Playwrite NG Modern", cursive;
     --test: "Playwrite DE Grund",
+        cursive;
+    --welcome: "LXGW WenKai TC",
         cursive;
 
 }
@@ -25,15 +35,17 @@ html {
     height: 100%;
     width: 100%;
     background-position: center;
-    background-size: cover;
+    background-size: calc(100%, 105%);
     box-sizing: border-box;
     scroll-behavior: smooth;
+    background-repeat: no-repeat;
 }
 
 body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: var(--welcome);
 }
 
 .bg {
@@ -42,14 +54,150 @@ body{
 .logo-img {
     display: flex;
     justify-content: left;
+    
 }
 .logo-img img{
-   width: 25%;
-   margin: -30px 0 -10px;
-   
-   
-
+   width: 35%;
+   margin-top: -30px;
+   margin-bottom: 1%;
 }
+
+/*      nav menu        */
+header {
+    display: grid;
+    grid-template-columns: 500px 1fr;
+    position: relative;
+}
+
+nav {
+    display: flex;
+    width: 350px;
+    background: var(--dark-pink);
+    position: absolute;
+    height: auto;
+    isolation: isolate;
+    top: 2rem;
+    right: 0;
+    overflow-x: hidden;
+    display: none;
+}
+
+nav ul {
+    flex-direction: column;
+    justify-content: center;
+    display: flex;
+    align-items: stretch;
+    list-style-type: none;
+    flex: 1;
+    line-height: 2em;
+    padding: 2%;
+   
+}
+
+nav li {
+    display: flex;
+    padding: 5%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+nav a {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 4px;
+    padding: 5% 20%;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    &:hover {
+        background-color: var(--light-pink);
+    }
+}
+
+.lines {
+    position: absolute;
+    top: -25px;
+    right: 0;
+    padding: 1.5em;
+    transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.lines .first {
+    opacity: 1;
+    transition: 0.1s ease;
+}
+
+.lines .line {
+    display: flex;
+    flex-direction: column;
+    width: 40px;
+    height: 4px;
+    background-color: whitesmoke;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+    &:hover {
+        background-color: var(--dark-pink);
+    }
+}
+
+.menu-icon {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 40px;
+    height: 100vh;
+    top: 30px;
+    right: 0;
+    background-color: transparent;
+    color: transparent;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.open .lines {
+  top: -20px;
+    transform: translateX(-260px);
+}
+
+.open .lines .first {
+    opacity: 0;
+}
+
+.open .lines .sec {
+    transform: rotate(45deg);
+    margin-bottom: -5px;
+    background-color: white;
+}
+
+.open .lines .sec:hover {
+    background-color: var(--light-pink);
+    transition: background-color 50ms ease;
+}
+
+.open .lines .third {
+    transform: rotate(-45deg);
+    margin-bottom: -5px;
+    background-color: whitesmoke;
+}
+
+.open .lines .third:hover {
+    background-color: var(--light-pink);
+    transition: background-color 50ms ease;
+}
+
+
+#nav-container.open nav {
+    display: flex;
+    top: 0;
+    transform: translateX(0);
+    background-color: rgba(69, 28, 94, 0.97);
+    z-index: 1000;
+}
+
+
 
 .calendar-header {
     padding: 10px;
@@ -71,23 +219,21 @@ body{
 
 .welcome-msg {
     display: flex;
-    font-family: var(--test);
     font-style: oblique;
     font-weight: 300;
-    margin-bottom: -10px;
-    justify-content: center;
-    color: #fff;
+    color: whitesmoke;
+    margin-block: 0;
 }
 
 
-.bg h2 {
+/* .bg h2 {
     display: flex;
     margin-top: 0;
     justify-content: center;
     font-family: var(--test);
     color: var(--btn-background);
     text-shadow: 1px 0px 1px black;
-}
+} */
 
 .redDot {
 color: var(--dark-pink);
@@ -103,11 +249,10 @@ button {
     cursor: pointer;
     box-shadow: 0px 0px 2px rgb(128, 128, 128);
     background-color: var(--dark-pink);
-    color: rgb(255,255,255);
+    color: white;
     font-size: 16px;
     border: none;
     outline: none;
-
     &:hover {
         background-color: white;
         color: var(--light-pink);
@@ -117,7 +262,7 @@ button {
     }
 }
 
-.main-container {
+ .bg {
     z-index: 999;
     /* position: absolute;
     top: 15%; */
@@ -125,10 +270,25 @@ button {
     max-width: 100%;
     margin: auto;
     background-color: var(--light-pink);
-    padding: 2% 1%;
-    margin-bottom: 20px;
+    padding: 1%;
+   
+    
+    box-shadow: 0 0 5px white;
 
 
+}
+.main-header {
+    background: var(--lt);
+    margin-top: 30px;
+    width: 700px;
+    max-width: 100%;
+    margin-inline: auto;
+    padding: 3% 1%;
+    box-shadow: 0 0 5px white;
+   
+}
+main {
+    padding-bottom: 20px;
 }
 
 .weekdays {
@@ -177,7 +337,7 @@ button {
     flex-direction: column;
     justify-content: space-between;
     font-weight: 700;
-    color: var(--light-lime);
+    color: var(--dark-pink);
     max-width: 100%;
 }
 
@@ -322,7 +482,7 @@ background: transparent;
 border: none;
 outline: none;
 border: 1px solid rgba(169, 4, 76, 0.576);
-border-radius: 40px;
+border-radius: 10px;
 font-size: 16px;
 color: var(--dark-pink);
 padding: 0.2rem 20px;
@@ -363,7 +523,7 @@ height: 45px;
 background: var(--dark-pink);
 border: none;
 outline: none;
-border-radius: 40px;
+border-radius: 10px;
 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 cursor: pointer;
 font-size: 22px;

@@ -6,84 +6,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="website icon" type="png" href="./images/cardiogram.png" alt="Medical icons created by Freepik - Flaticon" title="medical icons">
-    <script type="module" src="./js/main.js" defer></script>
+    <script type="module" src="./js/main.js"></script>
     <title>Calendar</title>
 </head>
 
 <body>
-
-    <div class="bg">
-        <h1 class="welcome-msg"><span id="userName"></span></h1>
-        <h2></h2>
-        <div class="main-body">
-            <div id="container" class="main-container">
-                <div class="logo-img">
-            <img src="./images/logo-no-background2.png" alt="https://logo.com/dashboard/your-logo-files">
-        </div>
-                <div id="header" class="calendar-header">
-                    <div id="monthDisplay"></div>
-                    <div>
-                        <button id="backButton">Back</button>
-                        <button id="nextButton">Next</button>
-                    </div>
-                </div>
-
-                <div class="caleContainer">
-                    <div id="weekdays" class="weekdays">
-                        <div>Sun</div>
-                        <div>Mon</div>
-                        <div>Tue</div>
-                        <div>Wed</div>
-                        <div>Thu</div>
-                        <div>Fri</div>
-                        <div>Sat</div>
-                    </div>
-                    <div id="calendar" class="calendar"></div>
-                </div>
-                <div id="output"></div>
-
+    <header class="main-header">
+        <div id="container">
+            <div class="logo-img">
+                <img src="./images/logo-no-background2.png"
+                    alt="https://logo.com/dashboard/your-logo-files">
             </div>
+            <h1 class="welcome-msg"><span id="userName"></span></h1>
         </div>
-    </div>
-    <div id="newEventModal" class="newEventModal">
-        <h2>Note</h2>
+        <div class="menu-icon" id="menu-icon">
+            <div class="lines">
+                <span class="line first"></span>
+                <span class="line sec"></span>
+                <span class="line third"></span>
+            </div>
+        
+            
+        </div>
+        <aside id="nav-container">
+            <nav>
+                <ul>
+                    <li><a href="#">One</a></li>
+                    <li><a href="#">Two</a></li>
+                    <li><a href="#">Three</a></li>
+                    <li><a href="#">Four</a></li>
+                </ul>
+            </nav>
+        </aside>
+    </header>
+  
 
-        <input id="eventTitleInput" placeholder="Event Title" class="eventTitleInput">
+    <main>
+        <div class="bg">
+            <div id="header" class="calendar-header">
+                <div id="monthDisplay"></div>
+                <div>
+                    <button id="backButton">Back</button>
+                    <button id="nextButton">Next</button>
+                </div>
+            </div>
+        
+            <div class="caleContainer">
+                <div id="weekdays" class="weekdays">
+                    <div>Sun</div>
+                    <div>Mon</div>
+                    <div>Tue</div>
+                    <div>Wed</div>
+                    <div>Thu</div>
+                    <div>Fri</div>
+                    <div>Sat</div>
+                </div>
+                <div id="calendar" class="calendar"></div>
+            </div>
 
-        <label for="moods">
-            <input type="radio" name="moods" id="moods"> Symptoms
-
-
-            <input type="radio" name="moods" id="moods"> Symptoms
-
-
-            <input type="radio" name="moods" id="moods"> Symptoms
-        </label>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"
-            class="drop">
-            <path
-                d="M32 2C32 2 2 32 2 48C2 62 14 64 32 64C50 64 62 62 62 48C62 32 32 2 32 2Z" />
-        </svg>
-        <button id="saveButton">Save</button>
-        <button id="cancelButton">Cancel</button>
-    </div>
-
-    <div id="deleteEventModal" class="deleteEventModal">
-        <h2>Event</h2>
-
-        <p id="eventText" class="eventText"></p>
-
-        <button id="deleteButton">Delete</button>
-        <button id="closeButton">Close</button>
-    </div>
-    <!-- <div id="predictionResult"></div> -->
-    <div id="predictionDisplay"></div>
-
-    <div id="modalBackDrop"></div>
-
-    <div>
-        <ul id="startDate"></ul>
-    </div>
+            <div id="output"></div>
+        </div>
+       
+        <div id="newEventModal" class="newEventModal">
+            <h2>Note</h2>
+            <input id="eventTitleInput" placeholder="Event Title" class="eventTitleInput">
+            <label for="moods">
+                <input type="radio" name="moods" id="moods"> Symptoms
+                <input type="radio" name="moods" id="moods"> Symptoms
+                <input type="radio" name="moods" id="moods"> Symptoms
+            </label>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"
+                class="drop">
+                <path
+                    d="M32 2C32 2 2 32 2 48C2 62 14 64 32 64C50 64 62 62 62 48C62 32 32 2 32 2Z" />
+            </svg>
+            <button id="saveButton">Save</button>
+            <button id="cancelButton">Cancel</button>
+        </div>
+        <div id="deleteEventModal" class="deleteEventModal">
+            <h2>Event</h2>
+            <p id="eventText" class="eventText"></p>
+            <button id="deleteButton">Delete</button>
+            <button id="closeButton">Close</button>
+        </div>
+        <!-- <div id="predictionResult"></div> -->
+        <div id="predictionDisplay"></div>
+        <div id="modalBackDrop"></div>
+        <div>
+            <ul id="startDate"></ul>
+        </div>
+    </main>
 
     
 
