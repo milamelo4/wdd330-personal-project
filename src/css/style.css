@@ -34,6 +34,7 @@ html {
     background-image: url("../images/pexels-pixabay-262713.jpg");
     height: 100%;
     width: 100%;
+    max-width: 100%;
     background-position: center;
     background-size: calc(100%, 105%);
     box-sizing: border-box;
@@ -45,6 +46,7 @@ body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    max-width: 100%;
     font-family: var(--welcome);
 }
 
@@ -148,7 +150,6 @@ nav a {
     flex-direction: column;
     position: absolute;
     width: 40px;
-    height: 100vh;
     top: 30px;
     right: 0;
     background-color: transparent;
@@ -565,15 +566,26 @@ display: none;
 }
 
 @media (width < 460px) {
-    body{
+
+    html {
+        background-image: none;
+        background: var(--light-pink);
+        
+        
+    }
+    .logo-img {
+        padding-top: 20px;
+    }
+    body, header{
         display: block;
         margin: 0;
         padding: 0;
-        
+        box-shadow: none;
     }
-    
+  
     .bg {
         display: block;
+        box-shadow: none;
     }
     .main-container {
         display: block;
@@ -581,40 +593,41 @@ display: none;
         padding: 0;
         width: fit-content;
     }
-    .weekdays {
+    .weekdays > * {
         width: 55%;
         display: flex;
         
        
         color: var(--btn-background);
+        margin-block: 0;
+        font-size: 16px;
         
-        font-size: 18px;
-        margin: 5px 13px;
-        
+        margin-left: -12px;
+        margin-right: 24px;
         text-shadow: 1px 1px 1px black;
-
-        & div {
-            align-content: center;
-            padding: 5px 11PX 0 13px;
-            text-align: left;
-            font-size: 17px;
-            /* margin: 0 9px 0 10px; */
-        }
+        
+       
         
     }
     .day {
-        
+        font-size: 12px;
         width: 40px;
         height: 40px;
         margin-inline: 5px;
         
     }
     
+    .caleContainer {
+        width: 360px;
+    }
+    .welcome-msg {
+        font-size: 20px;
+    }
     .calendar {
-        margin: 10px;
-        margin-inline: 20px;
-       width: 360px;
-       padding-bottom: 10px;
+        margin: 0 5px;
+        
+       width: 100%;
+       
     
        
     }

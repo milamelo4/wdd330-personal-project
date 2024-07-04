@@ -41,7 +41,7 @@ function welcomeMsg() {
   const nameValue = getLocalStorage('userName') || 'Guest'
   
   let charInx = 0
-  const welcomeMessage = `Welcome ${capitalize(nameValue)}!`
+  const welcomeMessage = `Welcome ${capitalize(nameValue)}🤍`;
 
   function type() {
     
