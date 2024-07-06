@@ -1,5 +1,5 @@
 import { openModal, saveEvent, deleteEvent, closeModal } from "./modal.mjs";
-import { getLocalStorage, qs, setContent, getDateInfo } from "./utils.mjs";
+import { getLocalStorage, qs, setContent, getDateInfo, capitalize } from "./utils.mjs";
 
 const weekdays = [
   'Sunday',
@@ -39,6 +39,7 @@ function addEventClassToRange(startDate, endDate) {
 export function load() { 
   let events = getLocalStorage("events") || []
   
+  
   const dt = new Date();
   if (nav !== 0) {
     dt.setMonth(new Date().getMonth() + nav)
@@ -50,7 +51,7 @@ export function load() {
   const paddingDays = weekdays.indexOf(dateString)
 
   calendar.innerHTML = ""
-
+  
   for (let i = 0; i < paddingDays + daysInMonth; i++) {
     const daySquare = document.createElement('div')
     daySquare.classList.add('day')
@@ -114,11 +115,36 @@ export function load() {
   
 }
 
+function welcomeMsg() {
+  const userN = qs("#userName")
+  let welcomeMsgDisplay = false
+  if (welcomeMsgDisplay) return
+
+  // welcome guest
+  const nameValue = getLocalStorage("userName") || "Guest"
+
+  let charInx = 0;
+  const welcomeMessage = `Welcome ${capitalize(nameValue)}🤍`
+
+  function type() {
+    if (charInx < welcomeMessage.length) {
+      userN.textContent += welcomeMessage.charAt(charInx)
+      charInx++
+      setTimeout(type, 200)
+    } else {
+      welcomeMsgDisplay = true
+    } // Don't display msg again
+  }
+
+  // call the function
+  type()
+}
+welcomeMsg()
 export function initBtn() {
-  qs('#nextButton').onclick = () => { nav++; load() }
-  qs('#backButton').onclick = () => { nav--; load(); }
+  qs('#nextButton').onclick = () => {nav++; load()}
+  qs('#backButton').onclick = () => {nav--; load()}
   qs('#cancelButton').onclick = () => closeModal()
-  qs('#saveButton').onclick = () => saveEvent()
+  qs('#saveButton').onclick = () =>  {saveEvent(); load()}
   qs('#deleteButton').onclick = () => deleteEvent()
   qs('#closeButton').onclick = () => closeModal()
 }

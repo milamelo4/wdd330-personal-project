@@ -11,7 +11,7 @@
     --lighter-pink: hsl(4, 100%, 88%);
     --light-blue: hsla(226, 55%, 88%, 0.718);
     --light-lime: hsl(55, 45%, 33%); */
-    --lt: #b159c7ea;
+    --lt: hsl(288, 50%, 56%);
     --light-pink: #C68CD5;
     --dark-pink: #451C5E;
     --btn-background: hsl(180, 100%, 94%);
@@ -198,7 +198,7 @@ nav a {
     z-index: 1000;
 }
 
-.calendar-header {
+.calendar-header{
     padding: 10px;
     color: var(--dark-pink);
     font-size: 26px;
@@ -469,127 +469,157 @@ legend {
 
 /* Login */
 .outer-wrapper {
-display: flex;
-align-items: center;
-justify-content: center;
-height: 100vh;
-background: url("../images/pexels-pixabay-262713.jpg");
-background-size: cover;
-background-position: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: url("../images/pexels-pixabay-262713.jpg");
+    background-size: cover;
+    background-position: left;
 
 }
 .wrapper {
-width: 400px;
-background: transparent;
-border: 2px solid rgba(169, 4, 76, 0.576);
-color: var(--dark-pink);
-border-radius: 10px;
-padding: 30px 35px;
-backdrop-filter: blur(20px);
-backface-visibility: visible;
-box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    width: 400px;
+    background: transparent;
+    border: 2px solid rgba(169, 4, 76, 0.576);
+    color: var(--dark-pink);
+    border-radius: 10px;
+    padding: 30px 35px;
+    backdrop-filter: blur(20px);
+    backface-visibility: visible;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
 
 }
 .wrapper h1 {
-font-size: 36px;
-text-align: center;
+    font-size: 36px;
+    text-align: center;
 }
 
 .input-box {
-width: 100%;
-height: 50px;
-margin: 30px 0;
-font-weight: 600;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+    font-weight: 600;
 }
 
 .input-box input {
-width: 100%;
-height: 100%;
-background: transparent;
-border: none;
-outline: none;
-border: 1px solid rgba(169, 4, 76, 0.576);
-border-radius: 10px;
-font-size: 16px;
-color: var(--dark-pink);
-padding: 0.2rem 20px;
-margin-left: -20px;
-font-weight: 600;
-
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 1px solid rgba(169, 4, 76, 0.576);
+    border-radius: 10px;
+    font-size: 16px;
+    color: var(--dark-pink);
+    padding: 0.2rem 20px;
+    margin-left: -20px;
+    font-weight: 600;
 }
 
 .input-box input::placeholder {
-color: var(--dark-pink); 
-font-weight: 500;
+    color: var(--dark-pink); 
+    font-weight: 500;
 }
 .wrapper .remember-forgot {
-display: flex;
-justify-content: space-between;
-font-size: 15px;
-margin: -10px 0 15px;
-font-weight: 600;
-
-
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+    margin: -10px 0 15px;
+    font-weight: 600;
 }
+
 .remember-forgot label input {
-accent-color: var(--dark-pink);
-margin-right: 3px;
+    accent-color: var(--dark-pink);
+    margin-right: 3px;
 }
 .remember-forgot a {
-color: var(--dark-pink);
-text-decoration: none;
-&:hover {
-    text-decoration: underline;
-}
+    color: var(--dark-pink);
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 .wrapper .login-btn {
-display: flex;
-width: 100%;
-height: 45px;
-background: var(--dark-pink);
-border: none;
-outline: none;
-border-radius: 10px;
-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-cursor: pointer;
-font-size: 22px;
-font-weight: 500;
-align-items: center;
-justify-content: center;
-color: #fff;
-text-decoration: none;
+    display: flex;
+    width: 100%;
+    height: 45px;
+    background: var(--dark-pink);
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 22px;
+    font-weight: 500;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-decoration: none;
 }
 
 input:invalid {
-border-color: var(--dark-pink);
+    border-color: var(--dark-pink);
 }
 
 input:focus:invalid {
-outline: none;
+    outline: none;
 }
 
 /* This is the style of our error messages */
 .error {
-display: block;
-width: 100%;
-padding: 1px 10px;
-font-size: 14px;
-color: white;
-background-color: rgb(157, 3, 3);
-border-radius: 0 0 5px 5px;
-margin-top: -15px;
-box-sizing: border-box;
+    display: block;
+    width: 100%;
+    padding: 1px 10px;
+    font-size: 14px;
+    color: white;
+    background-color: rgb(157, 3, 3);
+    border-radius: 0 0 5px 5px;
+    margin-top: -15px;
+    box-sizing: border-box;
 }
 
 .error.active {
-display: block;
-color: #fff;
+    display: block;
+    color: #fff;
 }
 
 .error {
-display: none;
+    display: none;
 }
+
+/*   Calendar prediction msg   */
+
+.calendar-msg-container {
+    background-color: var(--dark-pink);
+    width: 700px;
+    max-width: 100%;
+    padding: 1%;
+    margin-inline: auto;
+    color: white;
+    font-size: 18px;
+    box-shadow: 0 0 5px white;
+}
+
+footer {
+    opacity: 1;
+    width: 700px;
+    max-width: 100%;
+    display: block;
+    margin-inline: auto;
+    background-color: var(--lt);
+    margin-top: -19px;
+    padding: 0.2em 1%;
+   
+    & p {
+        font-style: 800;
+        font-size: 18px;
+    }
+    
+}
+
+     
 
 @media (width < 460px) {
 
@@ -612,15 +642,22 @@ display: none;
     .bg {
         display: block;
         box-shadow: none;
+        padding-bottom: 20px;
     }
     .main-container {
         display: block;
         margin: 0;
         padding: 0;
         width: fit-content;
+        
     }
+        .weekdays {
+            display: flex;
+            margin-left: 9px;
+            margin-bottom: -5px;
+        }
     .weekdays > * {
-        width: 55%;
+        width: 58%;
         display: flex;
         
        
@@ -628,8 +665,8 @@ display: none;
         margin-block: 0;
         font-size: 14px;
         
-        margin-left: -12px;
-        margin-right: 24px;
+        /* margin-left: -5px; */
+        margin-right: 15px;
         text-shadow: 1px 1px 1px black;
         
        
@@ -643,24 +680,21 @@ display: none;
         
     }
     
-    .caleContainer {
+    .caleContainer{
         width: 360px;
     }
     .welcome-msg {
         font-size: 20px;
     }
+
     .calendar {
         margin: 0 5px;
-        
-       width: 100%;
-       
-    
-       
+        width: 100%;
     }
 
     /* Modal */
     .deleteEventModal, .newEventModal {
-        width: 300px;
+        width: 345px;
     }
 
     /* login */
@@ -671,6 +705,10 @@ display: none;
 
     .lines:hover .line:hover {
         background-color: whitesmoke;
+    }
+
+    footer p{
+        font-size: 15px;
     }
     
    

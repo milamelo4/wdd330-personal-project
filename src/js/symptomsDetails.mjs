@@ -1,8 +1,9 @@
-import { setContent, getSymptoms, capitalize } from "./utils.mjs"
+import { setContent, getSymptoms, capitalize, setLocalStorage } from "./utils.mjs"
 
 export async function renderSymptoms() {
   const symptomsList = await getSymptoms()
   const { emotions, physical_symptoms } = symptomsList.symptoms
+  
 
   let contentEmotions = `<legend>Emotions</legend>`
   emotions.forEach((emotion) => {
@@ -11,6 +12,8 @@ export async function renderSymptoms() {
       <input type="checkbox" name="symptom" value="${emotion}">
       ${capitalize(emotion)}
     </label>`
+    
+    
   })
 
   let contentPhysical = `<legend>Physical</legend>`;
@@ -20,12 +23,15 @@ export async function renderSymptoms() {
       <input type="checkbox" name="symptom" value="${symptom}">
       ${capitalize(symptom)}
     </label><br>`
+    
   })
-
+  
+  
   return (
     setContent('#emotionForm', contentEmotions),
     setContent('#physicalForm', contentPhysical)
   )
+  
 }
 
 function getMenstrualPhaseMessage(startDate, currentDate) {

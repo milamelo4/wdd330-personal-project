@@ -63,15 +63,21 @@ export function saveEvent() {
     }
   }
 
+  // Save symptoms to localStorage
+  const selectedSymptoms = Array.from(
+     document.querySelectorAll('input[name="symptom"]:checked')
+  ).map((input) => input.value)
+
   events.push({
     date: clicked,
     title: eventTitle,
     type: eventType,
+    symptoms: selectedSymptoms
   })
 
   setLocalStorage('events', events) // Save events to localStorage
   // console.log('Calling closeModal')
-
+ 
   displayMessage(eventTitle, clicked)
   // Reload the calendar to reflect the new event
   load()
@@ -84,8 +90,9 @@ export function deleteEvent() {
   setLocalStorage('events', events);
   // console.log("Event deleted:", clicked)
   clearMessage()
+  closeModal();
   load()
-  closeModal()
+  
 }
 
 function displayMessage(eventTitle, date) {
