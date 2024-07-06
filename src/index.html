@@ -39,7 +39,6 @@
             </nav>
         </aside>
     </header>
-  
 
     <main>
         <div class="bg">
@@ -63,23 +62,33 @@
                 </div>
                 <div id="calendar" class="calendar"></div>
             </div>
+            
 
             <div id="output"></div>
+        </div>
+        <div id="calendarContainer">
+            <div id="calendar"></div>
+            <div id="dateMessage"></div>
         </div>
        
         <div id="newEventModal" class="newEventModal">
             <h2>Note</h2>
-            <input id="eventTitleInput" placeholder="Event Title" class="eventTitleInput">
-            <label for="moods">
-                <input type="radio" name="moods" id="moods"> Symptoms
-                <input type="radio" name="moods" id="moods"> Symptoms
-                <input type="radio" name="moods" id="moods"> Symptoms
-            </label>
+            <label for="startP"><input type="radio" name="startP" id="startPeriod">Start period</label><br>
+            <label for="startP"><input type="radio" name="startP" id="endPeriod">End period</label>
+            
+            <div class="symptoms-radio">
+                <form >
+                    <fieldset id="emotionForm" class="emotionForm"></fieldset>
+                    <fieldset id="physicalForm" class="physicalForm"></fieldset>
+                </form>
+            </div>
+            
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"
                 class="drop">
                 <path
                     d="M32 2C32 2 2 32 2 48C2 62 14 64 32 64C50 64 62 62 62 48C62 32 32 2 32 2Z" />
             </svg>
+            <input id="eventTitleInput" placeholder="Notes" class="eventTitleInput">
             <button id="saveButton">Save</button>
             <button id="cancelButton">Cancel</button>
         </div>
@@ -92,9 +101,8 @@
         <!-- <div id="predictionResult"></div> -->
         <div id="predictionDisplay"></div>
         <div id="modalBackDrop"></div>
-        <div>
-            <ul id="startDate"></ul>
-        </div>
+        
+        
     </main>
 
     

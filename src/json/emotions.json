@@ -1,0 +1,44 @@
+{
+    "symptoms": {
+        "emotions": [
+            "anger",
+            "annoyance",
+            "anxiety",
+            "approval",
+            "caring",
+            "clear-minded",
+            "confusion",
+            "curiosity",
+            "desire",
+            "disappointment",
+            "embarrassment",
+            "energized",
+            "excitement",
+            "fear",
+            "gratitude",
+            "grief",
+            "happy",
+            "joy",
+            "love",
+            "nervousness",
+            "optimism",
+            "relief",
+            "remorse",
+            "sadness",
+            "sociable",
+            "surprise",
+            "neutral"
+        ],
+        "physical_symptoms": [
+            "cramps",
+            "bloating",
+            "headaches",
+            "fatigue",
+            "nausea",
+            "back pain",
+            "breast tenderness",
+            "acne",
+            "food cravings",
+            "mood swings"
+        ]
+}}

@@ -1,72 +1,55 @@
 import { openModal, saveEvent, deleteEvent, closeModal } from "./modal.mjs";
-import { getLocalStorage, setLocalStorage, qs, setContent, getDateInfo, capitalize } from "./utils.mjs";
+import { getLocalStorage, qs, setContent, getDateInfo } from "./utils.mjs";
 
 const weekdays = [
-  'Sunday', // 0
-  'Monday', // 1
-  'Tuesday', // 2
-  'Wednesday', // 3
-  'Thursday', // 4
-  'Friday', // 5
-  'Saturday', // 6
+  'Sunday',
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
 ]
-let nav = 0
-let events = getLocalStorage('events') || []
+let events = getLocalStorage("events") || []
+const calendar = qs("#calendar")
+ let nav = 0;
 
-const calendar = qs('#calendar')
+function addEventClassToRange(startDate, endDate) {
+ const currentDate = new Date(startDate);
+ currentDate.setDate(currentDate.getDate() + 1) // Move to the day after the start date
+//  console.log(`Adding event-range class from ${startDate} to ${endDate}`)
+ while (currentDate < endDate) {
+   // Skip the end date
+   const dayString = `${
+     currentDate.getMonth() + 1
+   }/${currentDate.getDate()}/${currentDate.getFullYear()}`
+   const daySquare = qs(`[data-date='${dayString}']`)
 
-// Generates and displays the calendar for the current month (or a different month if nav buttons have been used)
-export function load() {
+   if (daySquare) {
+    //  console.log(`Adding event-range class to ${dayString}`)
+     daySquare.classList.add('event-range')
 
-  const dt = new Date() // Fri Jun 28 2024 14:42:56 GMT-0600 (Mountain Daylight Time)
+   } else {
+    //  console.log(`No daySquare found for ${dayString}`)
+   }
+   currentDate.setDate(currentDate.getDate() + 1)
+ }
+}
+
+export function load() { 
+  let events = getLocalStorage("events") || []
+  
+  const dt = new Date();
   if (nav !== 0) {
-    dt.setMonth(new Date().getMonth() + nav) // Adjust the month based on the navigation value
+    dt.setMonth(new Date().getMonth() + nav)
   }
 
   const { day, month, year, daysInMonth, firstDayOfMonth, dateString } = getDateInfo(dt)
-  
-  // Split where theres a comma and return index 0 
-  
-  setContent('#monthDisplay',`${dt.toLocaleDateString('en-us', { month: 'long' })} ${year}`)
-  const paddingDays = weekdays.indexOf(dateString);
-  displayCalendar(paddingDays, daysInMonth, day, month, year);
-}
 
-function welcomeMsg() {
-  const userN = qs("#userName")
-  let welcomeMsgDisplay = false
-  if (welcomeMsgDisplay) return
-  
-  // welcome guest
-  const nameValue = getLocalStorage('userName') || 'Guest'
-  
-  let charInx = 0
-  const welcomeMessage = `Welcome ${capitalize(nameValue)}🤍`;
+  setContent('#monthDisplay', `${dt.toLocaleDateString('en-us', { month: 'long' })} ${year}`)
+  const paddingDays = weekdays.indexOf(dateString)
 
-  function type() {
-    
-  if (charInx < welcomeMessage.length) {
-    userN.textContent += welcomeMessage.charAt(charInx)
-    charInx++;
-    setTimeout(type, 200);
-    
-   } 
-   else { welcomeMsgDisplay = true }// Don't display msg again
-  }
-
-  // call the function
-  type()
-  }
-  
-document.addEventListener("DOMContentLoaded", function () {
-  welcomeMsg()
-  
-})
-
-
-// Display Calendar
-function displayCalendar(paddingDays, daysInMonth, currDay, currMonth, currYear) {
-  calendar.innerHTML = "" // Clear calendar
+  calendar.innerHTML = ""
 
   for (let i = 0; i < paddingDays + daysInMonth; i++) {
     const daySquare = document.createElement('div')
@@ -74,117 +57,72 @@ function displayCalendar(paddingDays, daysInMonth, currDay, currMonth, currYear)
 
     if (i >= paddingDays) {
       const dayOfMonth = i - paddingDays + 1
+      const dayString = `${month + 1}/${dayOfMonth}/${year}`
+      daySquare.setAttribute('data-date', dayString)
       daySquare.innerHTML = dayOfMonth
-
-      const dayString = `${currMonth + 1}/${dayOfMonth}/${currYear}`
+      //  console.log(`Setting data-date: ${dayString}`)
+      
       const eventForDay = events.find((e) => e.date === dayString)
+        // console.log(`Checking events for: ${dayString}`, eventForDay)
 
-      // Highlight current day
-      if (dayOfMonth === currDay && currMonth === new Date().getMonth()) {
+      if (dayOfMonth === day && month === new Date().getMonth()) {
         daySquare.classList.add('currentDay')
       }
 
       if (eventForDay) {
+       
+        // console.log('Event found for day:', dayString, eventForDay);
         const eventDiv = document.createElement('div')
-        eventDiv.classList.add('event');
+        eventDiv.classList.add('event')
+        
         eventDiv.innerHTML = eventForDay.title
         daySquare.appendChild(eventDiv)
-      }
 
-      daySquare.onclick = () => openModal(dayString)
+       if (eventForDay.type === 'start') {
+         const endEvent = events.find((e) => e.type === 'end')
+         if (endEvent) {
+           addEventClassToRange(
+             new Date(eventForDay.date),
+             new Date(endEvent.date)
+           )
+         }
+       } 
+    }
+    daySquare.onclick = () => {
+      openModal(dayString);
+    }
+    // console.log(`Date clicked: ${dayString}`);
+     
     } else {
       daySquare.classList.add('padding')
     }
 
     calendar.appendChild(daySquare)
   }
+
+  // check each event call range function
+   events.forEach((event) => {
+     if (event.type === 'start') {
+       const endEvent = events.find(
+         (e) => e.type === 'end' && new Date(e.date) >= new Date(event.date)
+       )
+       if (endEvent) {
+         addEventClassToRange(new Date(event.date), new Date(endEvent.date))
+       }
+     }
+   })
+  
 }
 
-// Back and Next btn
 export function initBtn() {
-  qs('#nextButton').onclick = () => { nav++, load()}
-  qs("#backButton").onclick = () => { nav--, load()}
-  qs("#cancelButton").onclick = () => closeModal()
-  qs("#saveButton").onclick = () => saveEvent()
-  qs("#deleteButton").onclick = () => deleteEvent()
-  qs("#closeButton").onclick = () => closeModal()
+  qs('#nextButton').onclick = () => { nav++; load() }
+  qs('#backButton').onclick = () => { nav--; load(); }
+  qs('#cancelButton').onclick = () => closeModal()
+  qs('#saveButton').onclick = () => saveEvent()
+  qs('#deleteButton').onclick = () => deleteEvent()
+  qs('#closeButton').onclick = () => closeModal()
 }
 
-
-
-
-// const url = "https://women-health-and-birth-control.p.rapidapi.com/health";
-// const options = {
-//   method: "GET",
-//   headers: {
-//     "x-rapidapi-key": '0284d7a3d8msh91349f8ed98628fp10b989jsn217fb3020db3',
-//     "x-rapidapi-host": "women-health-and-birth-control.p.rapidapi.com",
-//   },
-// };
-
-// async function testing() {
-//   try {
-//   const response = await fetch(url, options);
-//   const result = await response.text();
-
-//   console.log(result);
-// } catch (error) {
-//   //console.error(error);
-// }
-// }
-// const initUrl =
-//   "https://womens-health-menstrual-cycle-phase-predictions-insights.p.rapidapi.com/initialize"; // Hypothetical endpoint
-// const initOptions = {
-//   method: "GET",
-//   headers: {
-//     "x-rapidapi-key": "0284d7a3d8msh91349f8ed98628fp10b989jsn217fb3020db3",
-//     "x-rapidapi-host":
-//       "womens-health-menstrual-cycle-phase-predictions-insights.p.rapidapi.com",
-//   },
-// };
-
-// async function fetchRequestId() {
-//   try {
-//     const initResponse = await fetch(initUrl, initOptions);
-//     const initResult = await initResponse.json();
-//     console.log(initResult); // Check the response structure
-//     return initResult.request_id; // Adjust based on actual response structure
-//   } catch (error) {
-//     console.error("Error fetching request_id:", error);
-//   }
-// }
-
-//fetchRequestId();
-//testing()
-// const url =
-//   "https://womens-health-menstrual-cycle-phase-predictions-insights.p.rapidapi.com/process_cycle_data";
-// const options = {
-//   method: "POST",
-//   headers: {
-//     "x-rapidapi-key": "0284d7a3d8msh91349f8ed98628fp10b989jsn217fb3020db3",
-//     "x-rapidapi-host":
-//       "womens-health-menstrual-cycle-phase-predictions-insights.p.rapidapi.com",
-//     "Content-Type": "application/json",
-//   },
-//   body: JSON.stringify({
-//     current_date: formatDate(new Date()),
-//     past_cycle_data: [
-//       {
-//         cycle_start_date: 7,
-//         period_length: 0,
-//       },
-//     ],
-//     max_cycle_predictions: 0,
-//   }),
-// };
-
-// async function test() {
-//   try {
-//     const response = await fetch(url, options);
-//     const result = await response.text();
-//     console.log(result);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
-// test()
+document.addEventListener('DOMContentLoaded', function () {
+  load()
+})
