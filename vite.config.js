@@ -10,7 +10,8 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, "src/index.html"),
         login: resolve(__dirname, "src/login/index.html"),
-        json: resolve(__dirname, "src/json/emotions.json")
+        json: resolve(__dirname, "src/json/emotions.json"),
+        cycle: resolve(__dirname, "src/cycleData/index.html")
         
        
       },

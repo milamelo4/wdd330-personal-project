@@ -12,12 +12,12 @@
     --light-blue: hsla(226, 55%, 88%, 0.718);
     --light-lime: hsl(55, 45%, 33%); */
     --lt: hsl(288, 50%, 56%);
-    --light-pink: #C68CD5;
-    --dark-pink: #451C5E;
+    --light-pink: hsl(288, 46%, 69%);
+    --dark-pink: hsl(277, 54%, 24%);
     --btn-background: hsl(180, 100%, 94%);
     --lighter-pink: hsl(4, 100%, 88%);
     --light-blue: hsla(226, 55%, 88%, 0.718);
-    --light-lime: #9C60B6;
+    --light-lime: hsl(282, 37%, 55%);
 
     /* Fonts */
     --heading-font: 'Courier New', Courier, monospace;
@@ -59,12 +59,12 @@ body{
     
 }
 .logo-img img{
-   width: 35%;
+   width: 50%;
    margin-top: -30px;
    margin-bottom: 1%;
 }
 
-/*      nav menu        */
+/* ======= nav menu ========        */
 header {
     display: grid;
     grid-template-columns: 500px 1fr;
@@ -270,12 +270,10 @@ button {
     margin: auto;
     background-color: var(--light-pink);
     padding: 1%;
-   
-    
     box-shadow: 0 0 5px white;
 
-
 }
+
 .main-header {
     background: var(--lt);
     margin-top: 30px;
@@ -286,6 +284,7 @@ button {
     box-shadow: 0 0 5px white;
    
 }
+
 main {
     padding-bottom: 20px;
 }
@@ -343,14 +342,12 @@ main {
     background-color: var(--lighter-pink);
 }
 
-/* .day+currentDay {
-    background-color: #111411;
-} */
+/* ======= Modal Events ========= */
+
 .event-range {
     background-color: #ea8b8bc5;
-    
-    /* Example color */
 }
+
 .event {
     font-size: 11px;
     padding: 3px;
@@ -365,7 +362,6 @@ main {
     cursor: default !important;
     background-color: #FFFCFF !important;
     box-shadow: none !important;
-
 }
 
 .currentDay {
@@ -404,7 +400,6 @@ main {
     outline: none;
     border: none;
     box-shadow: 0px 0px 3px gray;
-
 }
 
 .eventTitleInput.error {
@@ -438,14 +433,15 @@ main {
     z-index: 1000;
 }
 
-/*   Modal functionality   */
+/* =========  Modal functionality ==========   */
+
 .newEventModal form {
    display: block;
    & label {
     padding: 0.2%;
    }
-        
 }
+
 .emotionForm {
     display: flex;
     flex-wrap: wrap;
@@ -453,9 +449,8 @@ main {
    & label {
     flex-basis: calc(50% - 10px);
    }
-  
-    
 }
+
 .physicalForm {
     column-count: 2;
     padding: 2%;
@@ -467,19 +462,24 @@ legend {
     font-size: 18px;
 }
 
-/* Login */
-.outer-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background: url("../images/pexels-pixabay-262713.jpg");
-    background-size: cover;
-    background-position: left;
+/* ======= Login ========*/
 
+.outer-wrapper {
+    display: block;
+    margin-inline: auto;
+  
+    
+    width: 700px;
+    padding: 2% 0;
+    /* height: 100vh; */
+    /* background: url("../images/pexels-pixabay-262713.jpg");
+    background-size: cover;
+    background-position: left; */
 }
+
 .wrapper {
     width: 400px;
+    margin-inline: auto;
     background: transparent;
     border: 2px solid rgba(169, 4, 76, 0.576);
     color: var(--dark-pink);
@@ -488,8 +488,8 @@ legend {
     backdrop-filter: blur(20px);
     backface-visibility: visible;
     box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-
 }
+
 .wrapper h1 {
     font-size: 36px;
     text-align: center;
@@ -568,6 +568,7 @@ input:focus:invalid {
 }
 
 /* This is the style of our error messages */
+
 .error {
     display: block;
     width: 100%;
@@ -600,6 +601,9 @@ input:focus:invalid {
     color: white;
     font-size: 18px;
     box-shadow: 0 0 5px white;
+    & div {
+        padding-left: 6%;
+    }
 }
 
 footer {

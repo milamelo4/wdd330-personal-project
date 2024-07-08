@@ -41,11 +41,18 @@ export function removeAllAlerts() {
 }
 
 export function qs(selector) {
-  return document.querySelector(selector)
+  const element = document.querySelector(selector)
+  if(!element) {
+    console.warn(`Element not found for selector: ${selector}`)
+  }
+  return element
 }
 
 export function setContent(selector, content) {
-  qs(selector).innerHTML = content
+  const element = qs(selector)
+  if (element) {
+    element.innerHTML = content
+  }
 }
 
 export function getDateInfo(dt) {
@@ -54,7 +61,6 @@ export function getDateInfo(dt) {
   const year = dt.getFullYear()
   const daysInMonth = new Date(year, month + 1, 0).getDate()
   const firstDayOfMonth = new Date(year, month, 1)
-
   const dateString = firstDayOfMonth.toLocaleDateString("en-us", {
     weekday: "long",
   });
@@ -73,6 +79,7 @@ async function convertToJson(res) {
   const data = await res.json()
   if (res.ok) {
     return data
+
   } else {
     throw { name: "servicesError", message: data }
   }

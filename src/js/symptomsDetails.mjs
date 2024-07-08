@@ -1,4 +1,4 @@
-import { setContent, getSymptoms, capitalize, setLocalStorage } from "./utils.mjs"
+import { setContent, getSymptoms, capitalize, getLocalStorage, qs } from "./utils.mjs"
 
 export async function renderSymptoms() {
   const symptomsList = await getSymptoms()
@@ -34,36 +34,71 @@ export async function renderSymptoms() {
   
 }
 
-function getMenstrualPhaseMessage(startDate, currentDate) {
+function getMenstrualPhaseMessage(endDate, startDate, currentDate) {
   // Number of milliseconds in one day
-  const msInDay = 24 * 60 * 60 * 1000
+  const msInDay = 24 * 60 * 60 * 1000;
   // Calculate the difference in days
   const daysDifference = Math.floor((currentDate - startDate) / msInDay)
+  const cycleLength = Math.floor((endDate - startDate) / msInDay) + 1
+
+  if (daysDifference < 0) {
+    return 'The start date is in the future.'
+  }
 
   if (daysDifference === 0) {
     return 'Today is your first day.'
+  }
 
-  } else if (daysDifference > 0 && daysDifference <= 5) {
+  if (daysDifference <= 5) {
     return `Today is day ${daysDifference + 1} of your period.`
+  }
 
-  } else if (daysDifference > 5 && daysDifference <= 14) {
-    return `Today is day ${ daysDifference + 1 }. You are in the follicular phase.`
-
-  } else if (daysDifference > 14 && daysDifference <= 21) {
+  if (daysDifference <= 14) {
     return `Today is day ${
-      daysDifference + 1 }. You are in the ovulation phase.`
+      daysDifference + 1
+    }. You are in the follicular phase.`
+  }
 
-  } else if (daysDifference > 21 && daysDifference <= 28) {
+  if (daysDifference <= 21) {
+    return `Today is day ${
+      daysDifference + 1
+    }. You are in the ovulation phase.`
+  }
+
+  if (daysDifference <= 28) {
     return `Today is day ${daysDifference + 1}. You are in the luteal phase.`
+  }
 
-  } else {
+  if (daysDifference > 28 && daysDifference < cycleLength) {
     return `Today is day ${daysDifference + 1} of your cycle.`
   }
+
+  return 'Your cycle has ended.'
 }
 
 export function updateDateMessage(date) {
-  const startDate = new Date(date)
+  const startDateString = getLocalStorage('startDate')
+  let endDateString = getLocalStorage('endDate')
   const currentDate = new Date()
-  const message = getMenstrualPhaseMessage(startDate, currentDate)
-  return setContent('#dateMessage', `Date: ${date} - ${message}`)
+
+  if (!startDateString) {
+    return setContent("#dateMessage", "Start date not set.");
+  }
+
+  
+
+  const startDate = new Date(startDateString)
+  let endDate = endDateString ? new Date(endDateString) : null
+
+  if (!endDate) {
+    // If end date is not set, use a default cycle length to give a meaningful message
+    endDate = new Date(startDate);
+    endDate.setDate(endDate.getDate() + 28); // Assuming a default cycle length of 28 days
+  }
+
+  const message = getMenstrualPhaseMessage(startDate, endDate, currentDate)
+  return setContent(
+    "#dateMessage",
+    `Date: ${currentDate.toLocaleDateString()} - ${message}`
+  );
 }

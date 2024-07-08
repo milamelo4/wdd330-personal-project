@@ -6,11 +6,12 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="website icon" type="png" href="../images/cardiogram.png"
         alt="Medical icons created by Freepik - Flaticon" title="medical icons">
-    <script type="module" src="../js/login.js"></script>
-    <title>Calendar | Login</title>
+    <!-- <script type="module" src="../js/main.js"></script> -->
+    <script type="module" src="../js/cycleDates.js"></script>
+    <title>Calendar | Cycle Dates</title>
 </head>
 <body>
-     <header class="main-header">
+    <header class="main-header">
         <div id="container">
             <div class="logo-img">
                 <a href="../index.html">
@@ -33,7 +34,7 @@
             <nav>
                 <ul>
                     <li><a href="../login/index.html">Log In</a></li>
-                    <li><a href="../cycleData/index.html">Past Entries</a></li>
+                    <li><a href="./cycleData/index.html">Past Entries</a></li>
                     <li><a href="../index.html">Home</a></li>
     
                 </ul>
@@ -41,30 +42,12 @@
         </aside>
     </header>
     <main>
-        <div class="outer-wrapper">
-            <div class="wrapper">
-                <form id="loginForm">
-                    <h1>Login</h1>
-                    <div class="input-box">
-                        <input type="text" name="userName" id="userName" placeholder="*First Name" required>
-                    </div>
-                    <div class="input-box">
-                        <input type="email" name="email" id="email" placeholder="*Email address"
-                        required minlength="5" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
-                        <span class="error" aria-live="polite"></span>
-                    </div>
-                    <div class="remember-forgot">
-                        <label for="remember">
-                            <input type="checkbox" name="remember" id="remember ">Remember me
-                        </label>
-                        <label for="forgot"><a href="#">Forgot password</a></label>
-                    </div>
-                    <button type="submit" class="login-btn">Guest Login</button>
-                   
-                </form>
+        <div class="bg">
+            <div id="data-container">
+                <h1>Menstrual Cycle Dates </h1>
+                <div id="cycle-data"></div>
             </div>
         </div>
-
     </main>
     
 </body>

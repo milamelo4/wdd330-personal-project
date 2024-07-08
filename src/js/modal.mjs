@@ -43,10 +43,12 @@ export function saveEvent() {
   if (startPeriodInput.checked) {
     eventTitle = 'Start period'
     eventType = 'start'
+    setLocalStorage('startDate', clicked)
 
   } else if (endPeriodInput.checked) {
     eventTitle = 'End period'
     eventType = 'end'
+    setLocalStorage('endDate', clicked)
 
   } else {
     const eventTitleInput = qs('#eventTitleInput')

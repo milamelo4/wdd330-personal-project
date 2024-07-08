@@ -10,35 +10,35 @@ const weekdays = [
   'Friday',
   'Saturday',
 ]
-let events = getLocalStorage("events") || []
+
 const calendar = qs("#calendar")
  let nav = 0;
 
-function addEventClassToRange(startDate, endDate) {
- const currentDate = new Date(startDate);
- currentDate.setDate(currentDate.getDate() + 1) // Move to the day after the start date
-//  console.log(`Adding event-range class from ${startDate} to ${endDate}`)
- while (currentDate < endDate) {
-   // Skip the end date
-   const dayString = `${
-     currentDate.getMonth() + 1
-   }/${currentDate.getDate()}/${currentDate.getFullYear()}`
-   const daySquare = qs(`[data-date='${dayString}']`)
-
-   if (daySquare) {
-    //  console.log(`Adding event-range class to ${dayString}`)
-     daySquare.classList.add('event-range')
-
-   } else {
-    //  console.log(`No daySquare found for ${dayString}`)
-   }
-   currentDate.setDate(currentDate.getDate() + 1)
- }
+function addEventClassToRange(startDate, endDate, currentMonth, currentYear) {
+  const currentDate = new Date(startDate)
+  currentDate.setDate(currentDate.getDate() + 1) // Move to the day after the start date
+  while (currentDate <= endDate) {
+    const dayString = `${
+      currentDate.getMonth() + 1
+    }/${currentDate.getDate()}/${currentDate.getFullYear()}`
+    if (
+      currentDate.getMonth() === currentMonth &&
+      currentDate.getFullYear() === currentYear
+    ) {
+      const daySquare = qs(`[data-date='${dayString}']`)
+      if (daySquare) {
+        daySquare.classList.add("event-range");
+      } else {
+        console.warn(`No daySquare found for ${dayString}`)
+      }
+    }
+    currentDate.setDate(currentDate.getDate() + 1)
+  }
 }
+
 
 export function load() { 
   let events = getLocalStorage("events") || []
-  
   
   const dt = new Date();
   if (nav !== 0) {
@@ -77,18 +77,19 @@ export function load() {
         eventDiv.classList.add('event')
         
         eventDiv.innerHTML = eventForDay.title
-        daySquare.appendChild(eventDiv)
+        daySquare.appendChild(eventDiv);
+      }  
 
-       if (eventForDay.type === 'start') {
-         const endEvent = events.find((e) => e.type === 'end')
-         if (endEvent) {
-           addEventClassToRange(
-             new Date(eventForDay.date),
-             new Date(endEvent.date)
-           )
-         }
-       } 
-    }
+      //  if (eventForDay.type === 'start') {
+      //    const endEvent = events.find((e) => e.type === 'end')
+      //    if (endEvent) {
+      //      addEventClassToRange(
+      //        new Date(eventForDay.date),
+      //        new Date(endEvent.date)
+      //      )
+      //    }
+      //  } 
+    
     daySquare.onclick = () => {
       openModal(dayString);
     }
@@ -102,16 +103,16 @@ export function load() {
   }
 
   // check each event call range function
-   events.forEach((event) => {
-     if (event.type === 'start') {
-       const endEvent = events.find(
-         (e) => e.type === 'end' && new Date(e.date) >= new Date(event.date)
-       )
-       if (endEvent) {
-         addEventClassToRange(new Date(event.date), new Date(endEvent.date))
-       }
-     }
-   })
+  events.forEach((event) => {
+    if (event.type === 'start') {
+      const endEvent = events.find(
+        (e) => e.type === 'end' && new Date(e.date) >= new Date(event.date)
+      )
+      if (endEvent) {
+        addEventClassToRange(new Date(event.date), new Date(endEvent.date), month, year)
+      }
+    }
+  })
   
 }
 
