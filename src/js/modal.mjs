@@ -1,6 +1,13 @@
 import { load } from "./calendar.js";
-import { setLocalStorage, qs, getLocalStorage } from "./utils.mjs";
-import { updateDateMessage, renderSymptoms } from "./symptomsDetails.mjs"
+import {
+  setLocalStorage,
+  qs,
+  getLocalStorage,
+} from "./utils.mjs";
+import {
+  updateDateMessage,
+  renderSymptoms,
+} from "./symptomsDetails.mjs";
 
 let clicked = null
 const newEventModal = qs('#newEventModal')

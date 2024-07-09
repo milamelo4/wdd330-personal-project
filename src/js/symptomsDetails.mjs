@@ -1,4 +1,10 @@
-import { setContent, getSymptoms, capitalize, getLocalStorage, qs } from "./utils.mjs"
+import {
+  setContent,
+  getSymptoms,
+  capitalize,
+  getLocalStorage,
+  qs,
+} from "./utils.mjs";
 
 export async function renderSymptoms() {
   const symptomsList = await getSymptoms()

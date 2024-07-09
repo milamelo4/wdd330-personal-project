@@ -2,6 +2,7 @@ import { resolve } from "path";
 import { defineConfig } from "vite";
 
 export default defineConfig({
+  base: "/wdd330-personal-project/", // Correct base path
   root: "src/",
 
   build: {
@@ -10,11 +11,8 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, "src/index.html"),
         login: resolve(__dirname, "src/login/index.html"),
-        json: resolve(__dirname, "src/json/emotions.json"),
         cycle: resolve(__dirname, "src/cycleData/index.html"),
-        partialHeader: resolve(__dirname, "src/partials/header.html")
-        
-       
+        partialHeader: resolve(__dirname, "src/partials/header.html"),
       },
     },
   },

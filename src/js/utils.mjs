@@ -86,7 +86,7 @@ async function convertToJson(res) {
 }
 
 export async function getSymptoms() {
-  const response = await fetch("./json/emotions.json")
+  const response = await fetch("./json/emotions.json");
   const symptoms = await convertToJson(response)
   return symptoms
 }

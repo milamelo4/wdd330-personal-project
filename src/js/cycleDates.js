@@ -1,4 +1,8 @@
-import { qs, getLocalStorage, formatDate } from "./utils.mjs"
+import {
+  qs,
+  getLocalStorage,
+  formatDate,
+} from "./utils.mjs";
 // import { toggleNav } from "./menu.js";
 // toggleNav()
 

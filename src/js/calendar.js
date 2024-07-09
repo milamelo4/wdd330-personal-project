@@ -1,5 +1,16 @@
-import { openModal, saveEvent, deleteEvent, closeModal } from "./modal.mjs";
-import { getLocalStorage, qs, setContent, getDateInfo, capitalize } from "./utils.mjs";
+import {
+  openModal,
+  saveEvent,
+  deleteEvent,
+  closeModal,
+} from "./modal.mjs";
+import {
+  getLocalStorage,
+  qs,
+  setContent,
+  getDateInfo,
+  capitalize,
+} from "./utils.mjs";
 
 const weekdays = [
   'Sunday',

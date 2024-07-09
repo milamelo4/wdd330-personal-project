@@ -1,4 +1,4 @@
-import { qs, setLocalStorage } from "./utils.mjs"
+import { qs, setLocalStorage } from "./utils.mjs";
 
 
 const loginForm = qs('#loginForm')

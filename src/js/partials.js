@@ -1,5 +1,9 @@
 
-import { qs, capitalize, getLocalStorage } from "./utils.mjs";
+import {
+  qs,
+  capitalize,
+  getLocalStorage,
+} from "./utils.mjs";
 
 export async function renderWithTemplate(
   templateFn,
@@ -32,11 +36,10 @@ function loadTemplate(path) {
 }
 
 export async function loadHeaderFooter() {
-  console.log("loading header and footer...");
-  const headerTemplateFn = loadTemplate("/partials/header.html");
-  const footerTemplateFn = loadTemplate("/partials/footer.html");
+  const headerTemplateFn = loadTemplate("./partials/header.html");
+  //const footerTemplateFn = loadTemplate("/partials/footer.html");
   const headerEl = document.querySelector("#main-header");
-  const footerEl = document.querySelector("#main-footer");
+  //const footerEl = document.querySelector("#main-footer");
   await renderWithTemplate(headerTemplateFn, headerEl);
     console.log("Header loaded and rendered.");
   //renderWithTemplate(footerTemplateFn, footerEl);
