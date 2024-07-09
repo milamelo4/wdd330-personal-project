@@ -207,14 +207,7 @@ nav a {
     font-weight: 800;
 }
 
-.drop {
-    display: block;
-    width: 15px;
-    height: 15px;
-    fill: var(--light-pink);
-    stroke: black;
-    stroke-width: 5px;
-}
+
 
 .welcome-msg {
     display: flex;
@@ -396,8 +389,9 @@ main {
 }
 
 .eventTitleInput {
+    display: block;
     padding: 10px;
-    width: 100%;
+    width: 300px;
     box-sizing: border-box;
     margin-bottom: 25px;
     border-radius: 3px;
@@ -431,7 +425,7 @@ main {
     z-index: 10;
     width: 100%;
     max-width: 100%;
-    height: 1000px;
+    height: 200vh;
     position: absolute;
     background-color: rgba(0, 0, 0, 0.8);
     z-index: 1000;
@@ -475,6 +469,22 @@ legend {
 .radio  {
     font-size: 18px;
     accent-color: red;
+    
+}
+.flow-container label{
+    display: flex;
+    margin: 2%;
+    font-size: 18px;
+    
+    
+    
+}
+.drop {
+    display: block;
+    width: 20px;
+    height: 20px;
+    fill: var(--light-pink);
+    margin-left: 10px ;
     
 }
 
