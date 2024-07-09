@@ -43,7 +43,7 @@ export async function loadHeaderFooter() {
   await renderWithTemplate(headerTemplateFn, headerEl);
     console.log("Header loaded and rendered.");
   //renderWithTemplate(footerTemplateFn, footerEl);
-  toggleNav()
+  toggleNav();
   welcomeMsg();
 }
 
