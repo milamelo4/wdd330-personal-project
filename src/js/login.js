@@ -27,7 +27,7 @@ loginForm.addEventListener("submit", function (event) {
     setLocalStorage("userName", user)
 
     // Direct user to calendar
-    window.location.href = "../index.html"
+    window.location.href = "../index.html";
   }
    else {
     this.reportValidity()
