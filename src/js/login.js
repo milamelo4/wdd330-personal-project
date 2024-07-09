@@ -10,8 +10,7 @@ const emailError = qs('#email + span.error')
 
 // check email
 userEmail.addEventListener('input', (e) => {
-  const s = new URLSearchParams('userName')
-  console.log(s)
+  
     if (userEmail.validity.valid) {
         emailError.textContent = ''
         emailError.className = 'error'
@@ -22,9 +21,10 @@ userEmail.addEventListener('input', (e) => {
 
 loginForm.addEventListener("submit", function (event) {
   event.preventDefault()
+  const user = userName.value;
+  localStorage.setItem("userName", user);
   if (this.checkValidity()) {
-    const user = userName.value;
-    setLocalStorage("userName", user)
+    
 
     // Direct user to calendar
     window.location.href = "../index.html";

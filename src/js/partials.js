@@ -62,35 +62,42 @@ export function toggleNav() {
 }
 
  function welcomeMsg() {
-  const userN = qs("#userName")
-  let welcomeMsgDisplay = false
-  if (welcomeMsgDisplay) return
+   const userN = qs("#displayUserName");
+   if (!userN) {
+     console.error("User name display element not found");
+     return;
+   }
 
-  // welcome guest
-  const nameValue = getLocalStorage("userName") || "Guest";
-  if(!nameValue) {
-    userN.textContent = "Welcome Guest 🤍";
-    return
+   let welcomeMsgDisplay = false;
+   if (welcomeMsgDisplay) return;
+
+   let nameValue = getLocalStorage("userName");
+   if (!nameValue) {
+     nameValue = "Guest";
+   }
+
+   let charInx = 0;
+   const welcomeMessage = `Welcome ${capitalize(nameValue)}🤍`;
+
+   function type() {
+     if (charInx < welcomeMessage.length) {
+       userN.textContent += welcomeMessage.charAt(charInx);
+       charInx++;
+       setTimeout(type, 200);
+     } else {
+       welcomeMsgDisplay = true;
+     }
+   }
+
+   type();
+ }
+document.addEventListener("DOMContentLoaded", () => {
+  toggleNav();
+  // Only call welcomeMsg if the #displayUserName element exists
+  if (document.querySelector("#displayUserName")) {
+    welcomeMsg();
   }
-
-  let charInx = 0;
-  const welcomeMessage = `Welcome ${capitalize(nameValue)}🤍`
-
-  function type() {
-    if (charInx < welcomeMessage.length) {
-      userN.textContent += welcomeMessage.charAt(charInx)
-      charInx++
-      setTimeout(type, 200)
-    } else {
-      welcomeMsgDisplay = true
-    } // Don't display msg again
-  }
-
-  // call the function
-  type()
-}
-welcomeMsg()
-toggleNav()
+});
 
 
 
