@@ -2,7 +2,7 @@ import { resolve } from "path";
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  base: "/wdd330-personal-project/", // Correct base path
+  // base: "/wdd330-personal-project/", // Correct base path
   root: "src/",
 
   build: {
