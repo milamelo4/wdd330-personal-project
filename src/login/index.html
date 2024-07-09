@@ -7,11 +7,12 @@
     <link rel="website icon" type="png" href="../images/cardiogram.png"
         alt="Medical icons created by Freepik - Flaticon" title="medical icons">
     <script type="module" src="../js/login.js"></script>
+    <script type="module" src="../js/partials.js"></script>
     <title>Calendar | Login</title>
 </head>
 <body>
-     <header class="main-header">
-        <div id="container">
+     <header class="main-header" id="main-header">
+        <!-- <div id="container">
             <div class="logo-img">
                 <a href="../index.html">
                     <img src="../images/logo-no-background2.png"
@@ -38,7 +39,7 @@
     
                 </ul>
             </nav>
-        </aside>
+        </aside> -->
     </header>
     <main>
         <div class="outer-wrapper">
@@ -50,7 +51,7 @@
                     </div>
                     <div class="input-box">
                         <input type="email" name="email" id="email" placeholder="*Email address"
-                        required minlength="5" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
+                        required minlength="5" >
                         <span class="error" aria-live="polite"></span>
                     </div>
                     <div class="remember-forgot">

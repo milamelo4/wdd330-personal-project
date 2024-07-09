@@ -1,6 +1,6 @@
 import { qs, getLocalStorage, formatDate } from "./utils.mjs"
-import { toggleNav } from "./menu.js";
-toggleNav()
+// import { toggleNav } from "./menu.js";
+// toggleNav()
 
 export function displayCycleData() {
   const events = getLocalStorage("events") || [];

@@ -90,3 +90,5 @@ export async function getSymptoms() {
   const symptoms = await convertToJson(response)
   return symptoms
 }
+
+

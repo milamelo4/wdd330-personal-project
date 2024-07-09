@@ -11,7 +11,8 @@ export default defineConfig({
         main: resolve(__dirname, "src/index.html"),
         login: resolve(__dirname, "src/login/index.html"),
         json: resolve(__dirname, "src/json/emotions.json"),
-        cycle: resolve(__dirname, "src/cycleData/index.html")
+        cycle: resolve(__dirname, "src/cycleData/index.html"),
+        partialHeader: resolve(__dirname, "src/partials/header.html")
         
        
       },

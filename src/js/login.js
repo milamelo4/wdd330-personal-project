@@ -1,6 +1,5 @@
 import { qs, setLocalStorage } from "./utils.mjs"
-import { toggleNav } from "./menu"
-toggleNav()
+
 
 const loginForm = qs('#loginForm')
 const userName = qs('#userName')

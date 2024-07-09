@@ -116,31 +116,31 @@ export function load() {
   
 }
 
-function welcomeMsg() {
-  const userN = qs("#userName")
-  let welcomeMsgDisplay = false
-  if (welcomeMsgDisplay) return
+// function welcomeMsg() {
+//   const userN = qs("#userName")
+//   let welcomeMsgDisplay = false
+//   if (welcomeMsgDisplay) return
 
-  // welcome guest
-  const nameValue = getLocalStorage("userName") || "Guest"
+//   // welcome guest
+//   const nameValue = getLocalStorage("userName") || "Guest"
 
-  let charInx = 0;
-  const welcomeMessage = `Welcome ${capitalize(nameValue)}🤍`
+//   let charInx = 0;
+//   const welcomeMessage = `Welcome ${capitalize(nameValue)}🤍`
 
-  function type() {
-    if (charInx < welcomeMessage.length) {
-      userN.textContent += welcomeMessage.charAt(charInx)
-      charInx++
-      setTimeout(type, 200)
-    } else {
-      welcomeMsgDisplay = true
-    } // Don't display msg again
-  }
+//   function type() {
+//     if (charInx < welcomeMessage.length) {
+//       userN.textContent += welcomeMessage.charAt(charInx)
+//       charInx++
+//       setTimeout(type, 200)
+//     } else {
+//       welcomeMsgDisplay = true
+//     } // Don't display msg again
+//   }
 
-  // call the function
-  type()
-}
-welcomeMsg()
+//   // call the function
+//   type()
+// }
+//welcomeMsg()
 export function initBtn() {
   qs('#nextButton').onclick = () => {nav++; load()}
   qs('#backButton').onclick = () => {nav--; load()}
