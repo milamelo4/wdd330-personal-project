@@ -83,9 +83,11 @@
         </div>
        
         <div id="newEventModal" class="newEventModal">
-            <h2>Note</h2>
-            <label for="startP"><input type="radio" name="startP" id="startPeriod">Start period</label><br>
-            <label for="startP"><input type="radio" name="startP" id="endPeriod">End period</label>
+            <h2>Cycle Entries</h2>
+            <div class="start-end">
+                <label for="startP"><input type="radio" name="startP" id="startPeriod"> Start period</label>
+                <label for="startP"><input type="radio" name="startP" id="endPeriod"> End period</label>
+            </div>
             
             <div class="symptoms-radio">
                 <form >
@@ -99,7 +101,7 @@
                 <path
                     d="M32 2C32 2 2 32 2 48C2 62 14 64 32 64C50 64 62 62 62 48C62 32 32 2 32 2Z" />
             </svg>
-            <input id="eventTitleInput" placeholder="Notes" class="eventTitleInput">
+            <textarea id="eventTitleInput" placeholder="Notes" class="eventTitleInput"></textarea>
             <button id="saveButton">Save</button>
             <button id="cancelButton">Cancel</button>
         </div>

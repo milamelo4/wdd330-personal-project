@@ -41,7 +41,7 @@ let events = getLocalStorage('events') || []
  }
 
 export function saveEvent() {
-  // let events = getLocalStorage("events") || [];
+  let events = getLocalStorage("events") || [];
   const startPeriodInput = qs('#startPeriod')
   const endPeriodInput = qs('#endPeriod')
   let eventTitle = ''

@@ -14,10 +14,10 @@ export async function renderSymptoms() {
   let contentEmotions = `<legend>Emotions</legend>`
   emotions.forEach((emotion) => {
     contentEmotions += `
-    <label>
+    <label class="radio">
       <input type="checkbox" name="symptom" value="${emotion}">
       ${capitalize(emotion)}
-    </label>`
+    </label>`;
     
     
   })
@@ -25,7 +25,7 @@ export async function renderSymptoms() {
   let contentPhysical = `<legend>Physical</legend>`;
   physical_symptoms.forEach((symptom) => {
     contentPhysical += `
-    <label>
+    <label class="radio">
       <input type="checkbox" name="symptom" value="${symptom}">
       ${capitalize(symptom)}
     </label><br>`

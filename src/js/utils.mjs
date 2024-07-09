@@ -1,22 +1,9 @@
 export function getLocalStorage(key) {
-  const value = localStorage.getItem(key);
-  if (value) {
-    try {
-      return JSON.parse(value);
-    } catch (error) {
-      console.error(`Error parsing JSON for key "${key}":`, error);
-      return null;
-    }
-  }
-  return null;
+  return JSON.parse(localStorage.getItem(key));
 }
 
-export function setLocalStorage(key, value) {
-  try {
-    localStorage.setItem(key, value);
-  } catch (error) {
-    console.error(`Error setting ${key} in localStorage:`, error);
-  }
+export function setLocalStorage(key, data) {
+  localStorage.setItem(key, JSON.stringify(data));
 }
 
 export function formatDate(dateString) {
