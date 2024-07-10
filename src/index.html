@@ -100,14 +100,15 @@
                 <fieldset>
                     <legend>Flow</legend>
                         <label for="light">
-                            <input type="radio" name="flow" id="light"> Light
+                            <input type="radio" name="flow" id="light"> 
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="drop">
                                 <path
                                     d="M32 2C32 2 2 32 2 48C2 62 14 64 32 64C50 64 62 62 62 48C62 32 32 2 32 2Z" />
                             </svg>
+                            <span class="flow-title">(light)</span>
                         </label>
                         <label for="medium">
-                            <input type="radio" name="flow" id="medium"> Medium
+                            <input type="radio" name="flow" id="medium"> 
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="drop">
                                 <path
                                     d="M32 2C32 2 2 32 2 48C2 62 14 64 32 64C50 64 62 62 62 48C62 32 32 2 32 2Z" />
@@ -115,11 +116,12 @@
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="drop">
                                 <path
                                     d="M32 2C32 2 2 32 2 48C2 62 14 64 32 64C50 64 62 62 62 48C62 32 32 2 32 2Z" />
-                            </svg>
+                            </svg> 
+                            <span class="flow-title">(medium)</span>
                     
                         </label>
                         <label for="heavy">
-                            <input type="radio" name="flow" id="heavy"> Heavy
+                            <input type="radio" name="flow" id="heavy"> 
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="drop">
                                 <path
                                     d="M32 2C32 2 2 32 2 48C2 62 14 64 32 64C50 64 62 62 62 48C62 32 32 2 32 2Z" />
@@ -132,14 +134,17 @@
                                 <path
                                     d="M32 2C32 2 2 32 2 48C2 62 14 64 32 64C50 64 62 62 62 48C62 32 32 2 32 2Z" />
                             </svg>
+                             <span class="flow-title">(heavy)</span>
                         </label>
                     
                 </fieldset>
                 
                 
             </div>
-            <p>Cycle Notes:</p>
-            <textarea id="eventTitleInput" placeholder="Notes" class="eventTitleInput"></textarea>
+            <div class="text-area">
+                <p>Personal Notes:</p>
+                <textarea id="eventTitleInput" placeholder="Notes" class="eventTitleInput" cols="30" rows="10"></textarea>
+            </div>
             <button id="saveButton">Save</button>
             <button id="cancelButton">Cancel</button>
         </div>

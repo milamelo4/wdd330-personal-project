@@ -32,14 +32,15 @@
 html {
     content: "";
     background-image: url("../images/pexels-pixabay-262713.jpg");
-    height: 100%;
+    /* height: 200%; */
     width: 100%;
     max-width: 100%;
     background-position: center;
-    background-size: calc(100%, 105%);
+    background-size: cover;
     box-sizing: border-box;
     scroll-behavior: smooth;
     background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 body{
@@ -371,14 +372,15 @@ main {
     color: white;
     box-shadow: 0px 0px 3px white;
     border-radius: 5px;
-    width: 700px;
+    width: 800px;
     height: max-content;
     max-width: 100%;
     inset: 0;
     top: 50px;
     margin-inline: auto;
     padding-bottom: 20px;
-    z-index: 10000;
+    scroll-behavior: smooth;
+    /* z-index: 10000; */
     & h2 {
         color: white;
         text-align: center;
@@ -404,7 +406,7 @@ main {
     border: 2px solid red;
 }
 
-#cancelButton,
+
 #closeButton {
     background-color: #e24848;
 
@@ -414,6 +416,18 @@ main {
     }
 }
 
+#cancelButton, #saveButton {
+    width: 200px;
+    padding: 2%;
+    margin: 10px;
+    font-size: 20px;
+    background-color: rgba(45, 18, 62, 0.97);
+    &:hover {
+        color: var(--lt);
+        background-color: white;
+        transition: all .4s ease;
+    }
+}
 .eventText {
     font-size: 14px;
 }
@@ -445,13 +459,18 @@ main {
     flex-wrap: wrap;
    padding: 2%;
    & label {
-    flex-basis: calc(50% - 10px);
+    flex-basis: calc(30% - 1px);
    }
 }
 
 .physicalForm {
-    column-count: 2;
+    display: flex;
+    flex-wrap: wrap;
     padding: 2%;
+
+    & label {
+        flex-basis: calc(30% - 1px);
+    }
 }
 
 legend {
@@ -475,9 +494,12 @@ legend {
     display: flex;
     margin: 2%;
     font-size: 18px;
+    accent-color: red;
     
     
-    
+}
+.text-area {
+    margin-left: 1%;
 }
 .drop {
     display: block;
@@ -485,7 +507,11 @@ legend {
     height: 20px;
     fill: var(--light-pink);
     margin-left: 10px ;
+    margin-right: 5px;
     
+}
+.flow-title {
+    font-size: smaller;
 }
 
 /* .start-end input {
@@ -728,6 +754,7 @@ footer {
 
     /* Modal */
     .deleteEventModal, .newEventModal {
+        top: 0;
         width: 345px;
     }
 
@@ -739,6 +766,16 @@ footer {
 
     .lines:hover .line:hover {
         background-color: whitesmoke;
+    }
+
+    .emotionForm{
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+
+    .physicalForm {
+        display: grid;
+        grid-template-columns: auto auto;
     }
 
     footer p{
