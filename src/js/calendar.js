@@ -3,14 +3,14 @@ import {
   saveEvent,
   deleteEvent,
   closeModal,
-} from "./modal.mjs";
+} from './modal.mjs';
 import {
   getLocalStorage,
   qs,
   setContent,
   getDateInfo,
   capitalize,
-} from "./utils.mjs";
+} from './utils.mjs';
 
 const weekdays = [
   'Sunday',
@@ -22,7 +22,7 @@ const weekdays = [
   'Saturday',
 ]
 
-const calendar = qs("#calendar")
+const calendar = qs('#calendar')
  let nav = 0;
 
 function addEventClassToRange(startDate, endDate, currentMonth, currentYear) {
@@ -38,7 +38,7 @@ function addEventClassToRange(startDate, endDate, currentMonth, currentYear) {
     ) {
       const daySquare = qs(`[data-date='${dayString}']`)
       if (daySquare) {
-        daySquare.classList.add("event-range");
+        daySquare.classList.add('event-range');
       } else {
         console.warn(`No daySquare found for ${dayString}`)
       }
@@ -49,7 +49,7 @@ function addEventClassToRange(startDate, endDate, currentMonth, currentYear) {
 
 
 export function load() { 
-  let events = getLocalStorage("events") || []
+  let events = getLocalStorage('events') || []
   
   const dt = new Date();
   if (nav !== 0) {
@@ -61,7 +61,7 @@ export function load() {
   setContent('#monthDisplay', `${dt.toLocaleDateString('en-us', { month: 'long' })} ${year}`)
   const paddingDays = weekdays.indexOf(dateString)
 
-  calendar.innerHTML = ""
+  calendar.innerHTML = ''
   
   for (let i = 0; i < paddingDays + daysInMonth; i++) {
     const daySquare = document.createElement('div')
@@ -91,15 +91,6 @@ export function load() {
         daySquare.appendChild(eventDiv);
       }  
 
-      //  if (eventForDay.type === 'start') {
-      //    const endEvent = events.find((e) => e.type === 'end')
-      //    if (endEvent) {
-      //      addEventClassToRange(
-      //        new Date(eventForDay.date),
-      //        new Date(endEvent.date)
-      //      )
-      //    }
-      //  } 
     
     daySquare.onclick = () => {
       openModal(dayString);
@@ -127,40 +118,15 @@ export function load() {
   
 }
 
-// function welcomeMsg() {
-//   const userN = qs("#userName")
-//   let welcomeMsgDisplay = false
-//   if (welcomeMsgDisplay) return
-
-//   // welcome guest
-//   const nameValue = getLocalStorage("userName") || "Guest"
-
-//   let charInx = 0;
-//   const welcomeMessage = `Welcome ${capitalize(nameValue)}🤍`
-
-//   function type() {
-//     if (charInx < welcomeMessage.length) {
-//       userN.textContent += welcomeMessage.charAt(charInx)
-//       charInx++
-//       setTimeout(type, 200)
-//     } else {
-//       welcomeMsgDisplay = true
-//     } // Don't display msg again
-//   }
-
-//   // call the function
-//   type()
-// }
-//welcomeMsg()
 export function initBtn() {
-  qs('#nextButton').onclick = () => {nav++; load()}
-  qs('#backButton').onclick = () => {nav--; load()}
-  qs('#cancelButton').onclick = () => closeModal()
-  qs('#saveButton').onclick = () =>  {saveEvent(); load()}
-  qs('#deleteButton').onclick = () => deleteEvent()
-  qs('#closeButton').onclick = () => closeModal()
+  qs('#nextButton').onclick = () => {nav++; load()};
+  qs('#backButton').onclick = () => {nav--; load()};
+  qs('#cancelButton').onclick = () => closeModal();
+  qs('#saveButton').onclick = () =>  {saveEvent(); load()};
+  qs('#deleteButton').onclick = () => deleteEvent();
+  qs('#closeButton').onclick = () => closeModal();
 }
 
 document.addEventListener('DOMContentLoaded', function () {
   load()
-})
+});

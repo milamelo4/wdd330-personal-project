@@ -532,10 +532,9 @@ legend {
 .outer-wrapper {
     display: block;
     margin-inline: auto;
-  
-    
     width: 700px;
     padding: 2% 0;
+    max-width: 100%;
     /* height: 100vh; */
     /* background: url("../images/pexels-pixabay-262713.jpg");
     background-size: cover;
@@ -610,6 +609,7 @@ legend {
     display: flex;
     width: 100%;
     height: 45px;
+    max-width: 100%;
     background: var(--dark-pink);
     border: none;
     outline: none;
@@ -679,12 +679,12 @@ input:focus:invalid {
 .notes-container ul  {
     display: flex;
     flex-wrap: wrap;
-    /* gap: 20px; */
+    gap: 20px;
     list-style-type: none;
     justify-content: space-evenly;
     & li {
         background-color: var(--btn-background);
-        padding: 1%;
+        padding: 1% 2%;
         width: 300px;
         justify-items: center;
     }
@@ -739,29 +739,25 @@ footer {
         margin: 0;
         padding: 0;
         width: fit-content;
-        
     }
-        .weekdays {
-            display: flex;
-            margin-left: 9px;
-            margin-bottom: -5px;
-        }
+
+    .weekdays {
+        display: flex;
+        margin-left: 9px;
+        margin-bottom: -5px;
+    }
+
     .weekdays > * {
         width: 58%;
         display: flex;
-        
-       
         color: var(--btn-background);
         margin-block: 0;
         font-size: 14px;
-        
         /* margin-left: -5px; */
         margin-right: 15px;
         text-shadow: 1px 1px 1px black;
-        
-       
-        
     }
+
     .day {
         font-size: 12px;
         width: 40px;
@@ -789,8 +785,9 @@ footer {
     }
 
     /* login */
+    
     .wrapper {
-        margin: 5%;
+        width: 300px;
         background-color: #FFFCFF;
     }
 

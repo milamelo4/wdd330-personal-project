@@ -7,14 +7,14 @@ import {
 // toggleNav()
 
 export function displayCycleData() {
-  const events = getLocalStorage("events") || [];
-  const cycleDataContainer = qs("#cycle-data");
+  const events = getLocalStorage('events') || [];
+  const cycleDataContainer = qs('#cycle-data');
 
   const groupedByMonth = events.reduce((acc, event) => {
     const { date } = formatDate(event.date); // Use your formatDate function
-    const monthYear = date.toLocaleString("default", {
-      month: "long",
-      year: "numeric",
+    const monthYear = date.toLocaleString('default', {
+      month: 'long',
+      year: 'numeric',
     });
 
     if (!acc[monthYear]) {
@@ -27,16 +27,16 @@ export function displayCycleData() {
 
   //Converts the grouped object into an array
   for (const [monthYear, events] of Object.entries(groupedByMonth)) {
-    const monthSection = document.createElement("div");
-    monthSection.classList.add("month-section");
+    const monthSection = document.createElement('div');
+    monthSection.classList.add('month-section');
 
-    const monthHeader = document.createElement("h2");
+    const monthHeader = document.createElement('h2');
     monthHeader.textContent = monthYear;
     monthSection.appendChild(monthHeader);
 
     events.forEach((event) => {
       const { formattedDate } = formatDate(event.date); // Use your formatDate function
-      const eventDiv = document.createElement("div");
+      const eventDiv = document.createElement('div');
       eventDiv.classList.add("event-item");
       eventDiv.textContent = `${event.title}: ${formattedDate}`;
       monthSection.appendChild(eventDiv);

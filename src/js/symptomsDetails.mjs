@@ -3,7 +3,6 @@ import {
   getSymptoms,
   capitalize,
   getLocalStorage,
-  qs,
 } from "./utils.mjs";
 
 export async function renderSymptoms() {

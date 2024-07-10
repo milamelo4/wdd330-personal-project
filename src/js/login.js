@@ -1,4 +1,4 @@
-import { qs, setLocalStorage } from "./utils.mjs";
+import { qs } from './utils.mjs';
 
 
 const loginForm = qs('#loginForm')
@@ -19,15 +19,15 @@ userEmail.addEventListener('input', (e) => {
     }
 })
 
-loginForm.addEventListener("submit", function (event) {
+loginForm.addEventListener('submit', function (event) {
   event.preventDefault()
   const user = userName.value;
-  localStorage.setItem("userName", user);
+  localStorage.setItem('userName', user);
   if (this.checkValidity()) {
     
 
     // Direct user to calendar
-    window.location.href = "../personalEntry/index.html";
+    window.location.href = '../personalEntry/index.html';
   }
    else {
     this.reportValidity()

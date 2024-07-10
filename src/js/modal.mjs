@@ -18,13 +18,13 @@ const dateMessage = qs("#dateMessage")
 let events = getLocalStorage('events') || []
 
  export function openModal(date) {
-  events = getLocalStorage("events") || []
+  events = getLocalStorage('events') || []
   clicked = date// Set which day the user clicked
   // console.log(`start date: ${clicked}`)
 
   const eventForDay = events.find((e) => e.date == clicked)
     
-   // setContent("#startDate", displayToCalendar(clicked));
+   // setContent('#startDate', displayToCalendar(clicked));
    if (eventForDay) {
      qs('#eventText').innerHTML = eventForDay.title
      deleteEventModal.style.display = 'block'
@@ -41,44 +41,30 @@ let events = getLocalStorage('events') || []
  }
 
 export function saveEvent() {
-  let events = getLocalStorage("events") || [];
+  let events = getLocalStorage('events') || [];
   const startPeriodInput = qs('#startPeriod')
   const endPeriodInput = qs('#endPeriod')
   let eventTitle = ''
   let eventType = ''
-  const eventTitleInput = qs("#eventTitleInput");
+  const eventTitleInput = qs('#eventTitleInput');
 
   const selectedFlow = qs('input[name="flow"]:checked');
   const flowIntensity = selectedFlow ? selectedFlow.value : null;
 
   if (startPeriodInput.checked) {
-    eventTitle = "Start period";
-    eventType = "start";
-    setLocalStorage("startDate", clicked);
+    eventTitle = 'Start period';
+    eventType = 'start';
+    setLocalStorage('startDate', clicked);
   } else if (endPeriodInput.checked) {
-    eventTitle = "End period";
-    eventType = "end";
-    setLocalStorage("endDate", clicked);
+    eventTitle = 'End period';
+    eventType = 'end';
+    setLocalStorage('endDate', clicked);
 
-  } else if (eventTitleInput.value.trim() === "") {
-    eventTitleInput.classList.add("error");
-    console.log("Error: Event title is required.");
+  } else if (eventTitleInput.value.trim() === '') {
+    eventTitleInput.classList.add('error');
+    console.log('Error: Event title is required.');
     return;
   }
-  // else {
-  //   const eventTitleInput = qs('#eventTitleInput')
-
-  //   if (!eventTitleInput.value) {
-  //     eventTitleInput.classList.add('error')
-  //     console.log('Error: Event title is required.')
-  //     return
-
-  //   } else {
-  //     eventTitle = eventTitleInput.value;
-  //     eventType = 'custom'
-  //     eventTitleInput.classList.remove('error')
-  //   }
-  // }
 
   // Save symptoms to localStorage
   const selectedSymptoms = Array.from(
