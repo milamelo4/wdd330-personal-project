@@ -3,8 +3,8 @@ import {
   getLocalStorage,
   formatDate,
 } from "./utils.mjs";
-import { toggleNav } from "./partials.js";
-toggleNav()
+// import { toggleNav } from "./partials.js";
+// toggleNav()
 
 export function displayCycleData() {
   const events = getLocalStorage("events") || [];

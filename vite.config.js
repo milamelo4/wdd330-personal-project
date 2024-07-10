@@ -12,6 +12,7 @@ export default defineConfig({
         main: resolve(__dirname, "src/index.html"),
         login: resolve(__dirname, "src/login/index.html"),
         cycle: resolve(__dirname, "src/cycleData/index.html"),
+        notes: resolve(__dirname, "src/personalEntry/index.html")
       },
     },
   },
