@@ -46,31 +46,39 @@ export function saveEvent() {
   const endPeriodInput = qs('#endPeriod')
   let eventTitle = ''
   let eventType = ''
+  const eventTitleInput = qs("#eventTitleInput");
+
+  const selectedFlow = qs('input[name="flow"]:checked');
+  const flowIntensity = selectedFlow ? selectedFlow.value : null;
 
   if (startPeriodInput.checked) {
-    eventTitle = 'Start period'
-    eventType = 'start'
-    setLocalStorage('startDate', clicked)
-
+    eventTitle = "Start period";
+    eventType = "start";
+    setLocalStorage("startDate", clicked);
   } else if (endPeriodInput.checked) {
-    eventTitle = 'End period'
-    eventType = 'end'
-    setLocalStorage('endDate', clicked)
+    eventTitle = "End period";
+    eventType = "end";
+    setLocalStorage("endDate", clicked);
 
-  } else {
-    const eventTitleInput = qs('#eventTitleInput')
-
-    if (!eventTitleInput.value) {
-      eventTitleInput.classList.add('error')
-      console.log('Error: Event title is required.')
-      return
-
-    } else {
-      eventTitle = eventTitleInput.value;
-      eventType = 'custom'
-      eventTitleInput.classList.remove('error')
-    }
+  } else if (eventTitleInput.value.trim() === "") {
+    eventTitleInput.classList.add("error");
+    console.log("Error: Event title is required.");
+    return;
   }
+  // else {
+  //   const eventTitleInput = qs('#eventTitleInput')
+
+  //   if (!eventTitleInput.value) {
+  //     eventTitleInput.classList.add('error')
+  //     console.log('Error: Event title is required.')
+  //     return
+
+  //   } else {
+  //     eventTitle = eventTitleInput.value;
+  //     eventType = 'custom'
+  //     eventTitleInput.classList.remove('error')
+  //   }
+  // }
 
   // Save symptoms to localStorage
   const selectedSymptoms = Array.from(
@@ -81,7 +89,9 @@ export function saveEvent() {
     date: clicked,
     title: eventTitle,
     type: eventType,
-    symptoms: selectedSymptoms
+    symptoms: selectedSymptoms,
+    flow: flowIntensity,
+    notes: eventTitleInput.value.trim()
   })
 
   setLocalStorage('events', events) // Save events to localStorage
