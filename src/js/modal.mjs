@@ -2,7 +2,7 @@ import { load } from "./calendar.js";
 import {
   setLocalStorage,
   qs,
-  getLocalStorage,
+  getLocalStorage, alertMessage,
 } from "./utils.mjs";
 import {
   updateDateMessage,
@@ -29,6 +29,7 @@ let events = getLocalStorage('events') || [];
    if (eventForDay) {
      qs('#eventText').innerHTML = eventForDay.title;
      deleteEventModal.style.display = 'block';
+     
 
    } else {
      newEventModal.style.display = 'block';
@@ -48,6 +49,7 @@ export function saveEvent() {
   let eventTitle = '';
   let eventType = '';
   const eventTitleInput = qs('#eventTitleInput');
+ 
 
   const selectedFlow = qs('input[name="flow"]:checked');
   const flowIntensity = selectedFlow ? selectedFlow.value : null;
@@ -56,12 +58,14 @@ export function saveEvent() {
     eventTitle = 'Start period';
     eventType = 'start';
     setLocalStorage('startDate', clicked);
+    alertMessage(eventTitle)
 
   } 
   else if (endPeriodInput.checked) {
     eventTitle = 'End period';
     eventType = 'end';
     setLocalStorage('endDate', clicked);
+    alertMessage(eventTitle)
   } 
 
   else if (eventTitleInput.value.trim() === '') {
@@ -100,6 +104,7 @@ export function saveEvent() {
 export function deleteEvent() {
   events = events.filter((e) => e.date !== clicked);
   setLocalStorage('events', events);
+  alertMessage('Event deleted')
   // console.log("Event deleted:", clicked)
   clearMessage();
   closeModal();
@@ -136,10 +141,8 @@ function displayMessage(eventTitle, date) {
 }
 
 export function loadMessage() {
-  const lastMessage = getLocalStorage("lastMessage");
-  if (lastMessage) {
-    updateDateMessage(lastMessage.eventTitle, lastMessage.date);
-  }
+  // Update msg based on events
+  updateDateMessage();
 }
 
 function clearMessage() {

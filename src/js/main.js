@@ -4,11 +4,12 @@ import { loadMessage } from "./modal.mjs";
 
 
 document.addEventListener("DOMContentLoaded", () => {
-//   console.log("DOM fully loaded and parsed")
+// Initialize buttons
+  initBtn();
 
-  initBtn()
-  load()
-  
-  loadMessage()
- 
+  // Load calendar and events
+  load();
+
+  // Load initial msg and update
+  loadMessage();
 })

@@ -19,6 +19,7 @@ export function capitalize(word) {
 export function alertMessage(message, scroll = true, duration = 3000) {
   const alert = document.createElement("div");
   alert.classList.add("alert");
+  alert.classList.add("bg");
   alert.innerHTML = `<p>${message}</p><span title="Close">X</span>`;
 
   alert.addEventListener("click", function (event) {
@@ -30,13 +31,16 @@ export function alertMessage(message, scroll = true, duration = 3000) {
   const main = document.querySelector("main");
   main.prepend(alert);
   if (scroll) window.scrollTo(0, 0);
+
   setTimeout(function () {
+    alert.classList.add("fade-out");
     main.removeChild(alert);
-  }, duration);
+  }, duration - 500);
 }
 
 export function removeAllAlerts() {
   const alerts = document.querySelectorAll(".alert");
+  alerts.classList.add("fade-out");
   alerts.forEach((alert) => document.querySelector("main").removeChild(alert));
 }
 

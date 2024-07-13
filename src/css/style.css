@@ -657,6 +657,35 @@ input:focus:invalid {
     display: none;
 }
 
+.alert {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0 1%;
+    background-color: hsl(288, 69%, 90%);
+    opacity: 1;
+    transition: opacity .5s ease-out;
+    
+}
+
+.fade-out {
+    opacity: 0;
+}
+.alert > * {
+    align-items: center;
+    padding: 0 2%;
+    font-size: 18px;
+    color: var(--dark-pink);
+    font-weight: 900;
+    
+}
+
+.alert > span {
+    cursor: pointer;
+}
+
 /*   Calendar prediction msg   */
 
 .calendar-msg-container {

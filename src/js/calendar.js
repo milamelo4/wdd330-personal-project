@@ -131,11 +131,10 @@ export function initBtn() {
     load();
   };
   qs("#cancelButton").onclick = () => cancelEvent();
-  qs("#saveButton").onclick = () => {saveEvent()}; //; load()
+  qs("#saveButton").onclick = () => {saveEvent(),
+  load()}; //
   qs("#deleteButton").onclick = () => deleteEvent();
   qs("#closeButton").onclick = () => closeModal();
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-  load()
-});
+
