@@ -3,15 +3,13 @@ import {
   getLocalStorage,
   formatDate,
 } from "./utils.mjs";
-// import { toggleNav } from "./partials.js";
-// toggleNav()
 
 export function displayCycleData() {
   const events = getLocalStorage('events') || [];
   const cycleDataContainer = qs('#cycle-data');
 
   const groupedByMonth = events.reduce((acc, event) => {
-    const { date } = formatDate(event.date); // Use your formatDate function
+    const {date} = formatDate(event.date); // Use  formatDate function
     const monthYear = date.toLocaleString('default', {
       month: 'long',
       year: 'numeric',
@@ -35,9 +33,9 @@ export function displayCycleData() {
     monthSection.appendChild(monthHeader);
 
     events.forEach((event) => {
-      const { formattedDate } = formatDate(event.date); // Use your formatDate function
+      const {formattedDate} = formatDate(event.date); // Use formatDate function
       const eventDiv = document.createElement('div');
-      eventDiv.classList.add("event-item");
+      eventDiv.classList.add('event-item');
       eventDiv.textContent = `${event.title}: ${formattedDate}`;
       monthSection.appendChild(eventDiv);
     });
@@ -45,7 +43,6 @@ export function displayCycleData() {
     cycleDataContainer.appendChild(monthSection);
   }
 }
-
 
 document.addEventListener("DOMContentLoaded", () => {
   displayCycleData();

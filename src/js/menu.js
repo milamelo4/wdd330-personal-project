@@ -9,8 +9,9 @@
       navContainer.classList.toggle('open');
       menuIcon.classList.toggle('open');
     });
-  } else {
+  } 
+  else {
     console.warn('Menu icon or navigation container not found');
   }
 }
-toggleNav()
+toggleNav();

@@ -8,7 +8,7 @@ export function setLocalStorage(key, data) {
 
 export function formatDate(dateString) {
   const date = new Date(dateString);
-  const formattedDate = date.toLocaleDateString("en-US", { timeZone: "UTC" });
+  const formattedDate = date.toLocaleDateString('en-US', { timeZone: 'UTC' });
   return { formattedDate, date };
 }
 
@@ -16,32 +16,32 @@ export function capitalize(word) {
   return word.charAt(0).toUpperCase() + word.slice(1);
 }
 
-export function alertMessage(message, scroll = true, duration = 3000) {
-  const alert = document.createElement("div");
-  alert.classList.add("alert");
-  alert.classList.add("bg");
+export function alertMessage(message, scroll = true, duration = 3500) {
+  const alert = document.createElement('div');
+  alert.classList.add('alert');
+  alert.classList.add('bg');
   alert.innerHTML = `<p>${message}</p><span title="Close">X</span>`;
 
-  alert.addEventListener("click", function (event) {
-    if (event.target.tagName == "SPAN") {
+  alert.addEventListener('click', function (event) {
+    if (event.target.tagName == 'SPAN') {
       main.removeChild(this);
     }
   });
 
-  const main = document.querySelector("main");
+  const main = document.querySelector('main');
   main.prepend(alert);
   if (scroll) window.scrollTo(0, 0);
 
   setTimeout(function () {
-    alert.classList.add("fade-out");
+    alert.classList.add('fade-out');
     main.removeChild(alert);
   }, duration - 500);
 }
 
 export function removeAllAlerts() {
-  const alerts = document.querySelectorAll(".alert");
-  alerts.classList.add("fade-out");
-  alerts.forEach((alert) => document.querySelector("main").removeChild(alert));
+  const alerts = document.querySelectorAll('.alert');
+  alerts.classList.add('fade-out');
+  alerts.forEach((alert) => document.querySelector('main').removeChild(alert));
 }
 
 export function qs(selector) {
@@ -65,8 +65,8 @@ export function getDateInfo(dt) {
   const year = dt.getFullYear();
   const daysInMonth = new Date(year, month + 1, 0).getDate();
   const firstDayOfMonth = new Date(year, month, 1);
-  const dateString = firstDayOfMonth.toLocaleDateString("en-us", {
-    weekday: "long",
+  const dateString = firstDayOfMonth.toLocaleDateString('en-us', {
+    weekday: 'long',
   });
 
   return {
@@ -83,8 +83,9 @@ async function convertToJson(res) {
   const data = await res.json();
   if (res.ok) {
     return data;
-  } else {
-    throw { name: "servicesError", message: data };
+  } 
+  else {
+    throw { name: 'servicesError', message: data };
   }
 }
 

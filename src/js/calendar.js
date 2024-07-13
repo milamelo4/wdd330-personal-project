@@ -5,13 +5,12 @@ import {
   closeModal,
   cancelEvent
 } from './modal.mjs';
-import { updateDateMessage } from './symptomsDetails.mjs';
+
 import {
   getLocalStorage,
   qs,
   setContent,
   getDateInfo,
-  capitalize,
 } from './utils.mjs';
 
 const weekdays = [
@@ -41,7 +40,8 @@ function addEventClassToRange(startDate, endDate, currentMonth, currentYear) {
       const daySquare = qs(`[data-date='${dayString}']`);
       if (daySquare) {
         daySquare.classList.add('event-range');
-      } else {
+      } 
+      else {
         console.warn(`No daySquare found for ${dayString}`)
       }
     }
@@ -49,7 +49,7 @@ function addEventClassToRange(startDate, endDate, currentMonth, currentYear) {
   }
 }
 
-
+// Load calendar
 export function load() { 
   let events = getLocalStorage('events') || [];
   
@@ -63,11 +63,11 @@ export function load() {
   setContent('#monthDisplay', `${dt.toLocaleDateString('en-us', { month: 'long' })} ${year}`);
   const paddingDays = weekdays.indexOf(dateString);
 
-  calendar.innerHTML = '';
+  calendar.innerHTML = ''; // Reset calendar
   
   for (let i = 0; i < paddingDays + daysInMonth; i++) {
-    const daySquare = document.createElement('div')
-    daySquare.classList.add('day')
+    const daySquare = document.createElement('div');
+    daySquare.classList.add('day');
 
     if (i >= paddingDays) {
       const dayOfMonth = i - paddingDays + 1;
@@ -82,10 +82,7 @@ export function load() {
       if (dayOfMonth === day && month === new Date().getMonth()) {
         daySquare.classList.add('currentDay');
       }
-
       if (eventForDay) {
-       
-        // console.log('Event found for day:', dayString, eventForDay);
         const eventDiv = document.createElement('div');
         eventDiv.classList.add('event');
         
@@ -93,19 +90,17 @@ export function load() {
         daySquare.appendChild(eventDiv);
         
       }  
-
-    
-    daySquare.onclick = () => {
-      openModal(dayString);
-    }
-    //console.log(`Date clicked: ${dayString}`);
-     
-    } else {
+      // call openModal
+      daySquare.onclick = () => {
+        openModal(dayString);
+      };
+    } 
+    else {
       daySquare.classList.add('padding');
     }
-
+    // append days of the month to calendar
     calendar.appendChild(daySquare);
-  }
+  };
 
   // check each event call range function
   events.forEach((event) => {
@@ -117,10 +112,10 @@ export function load() {
         addEventClassToRange(new Date(event.date), new Date(endEvent.date), month, year);
       }
     }
-  })
-  
+  });
 }
 
+// Initialize buttons
 export function initBtn() {
   qs("#nextButton").onclick = () => {
     nav++;
@@ -133,6 +128,7 @@ export function initBtn() {
   qs("#cancelButton").onclick = () => cancelEvent();
   qs("#saveButton").onclick = () => {saveEvent(),
   load()}; //
+  
   qs("#deleteButton").onclick = () => deleteEvent();
   qs("#closeButton").onclick = () => closeModal();
 }

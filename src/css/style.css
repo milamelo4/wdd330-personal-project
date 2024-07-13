@@ -1,34 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playwrite+NG+Modern:wght@100..400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playwrite+DE+Grund:wght@100..400&family=Playwrite+MX:wght@100..400&family=Playwrite+NG+Modern:wght@100..400&display=swap');
+
 @import url('https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC&display=swap');
 
 :root {
     /* Colors */
-    /* --light-pink: hsl(338, 58%, 73%);
-    --dark-pink: rgb(169, 4, 76);
+    /*  --light-pink: hsl(338, 58%, 73%);
+     --dark-pink: rgb(169, 4, 76);
     --btn-background: hsl(180, 100%, 94%);
     --lighter-pink: hsl(4, 100%, 88%);
     --light-blue: hsla(226, 55%, 88%, 0.718);
     --light-lime: hsl(55, 45%, 33%); */
     --lt: hsl(288, 50%, 56%);
-    --light-pink: hsl(288, 46%, 69%);
-    --dark-pink: hsl(277, 54%, 24%);
+     --light-purple: hsl(288, 46%, 69%);
+     --dark-purple: hsl(277, 54%, 24%);
     --btn-background: hsl(180, 100%, 94%);
-    --lighter-pink: hsl(4, 100%, 88%);
+    --lighter-purple: hsl(4, 100%, 88%);
     --light-blue: hsla(226, 55%, 88%, 0.718);
     --light-lime: hsl(282, 37%, 55%);
 
     /* Fonts */
-    --heading-font: 'Courier New', Courier, monospace;
-    --nunito-sans: "Nunito Sans", sans-serif;
-    --header: "Playwrite NG Modern", cursive;
-    --test: "Playwrite DE Grund",
-        cursive;
-    --welcome: "LXGW WenKai TC",
-        cursive;
-
+    --welcome: "LXGW WenKai TC", cursive;
 }
+
 html {
     content: "";
     background-image: url("../images/pexels-pixabay-262713.jpg");
@@ -75,7 +67,7 @@ header {
 nav {
     display: flex;
     width: 350px;
-    background: var(--dark-pink);
+    background: var(--dark-purple);
     position: absolute;
     height: auto;
     isolation: isolate;
@@ -115,7 +107,7 @@ nav a {
     text-align: center;
     transition: background-color 0.3s ease;
     &:hover {
-        background-color: var(--light-pink);
+        background-color: var(--light-purple);
     }
 }
 
@@ -142,7 +134,7 @@ nav a {
     border-radius: 5px;
     transition: all 0.2s ease;
     &:hover {
-        background-color: var(--dark-pink);
+        background-color: var(--dark-purple);
     }
 }
 
@@ -175,7 +167,7 @@ nav a {
 }
 
 .open .lines .sec:hover {
-    background-color: var(--light-pink);
+    background-color: var(--light-purple);
     transition: background-color 50ms ease;
 }
 
@@ -186,7 +178,7 @@ nav a {
 }
 
 .open .lines .third:hover {
-    background-color: var(--light-pink);
+    background-color: var(--light-purple);
     transition: background-color 50ms ease;
 }
 
@@ -201,7 +193,7 @@ nav a {
 
 .calendar-header{
     padding: 10px;
-    color: var(--dark-pink);
+    color: var(--dark-purple);
     font-size: 26px;
     display: flex;
     justify-content: space-between;
@@ -219,17 +211,8 @@ nav a {
 }
 
 
-/* .bg h2 {
-    display: flex;
-    margin-top: 0;
-    justify-content: center;
-    font-family: var(--test);
-    color: var(--btn-background);
-    text-shadow: 1px 0px 1px black;
-} */
-
 .redDot {
-color: var(--dark-pink);
+color: var(--dark-purple);
 font-size: 52px;
 text-shadow: none;
 }
@@ -241,14 +224,14 @@ button {
     border-radius: 5px;
     cursor: pointer;
     box-shadow: 0px 0px 2px rgb(128, 128, 128);
-    background-color: var(--dark-pink);
+    background-color: var(--dark-purple);
     color: white;
     font-size: 16px;
     border: none;
     outline: none;
     &:hover {
         background-color: white;
-        color: var(--light-pink);
+        color: var(--light-purple);
         box-shadow: 0 0 10px var(--btn-background);
         font-weight: 600;
         transition: all .3s ease;
@@ -262,7 +245,7 @@ button {
     width: 700px;
     max-width: 100%;
     margin: auto;
-    background-color: var(--light-pink);
+    background-color: var(--light-purple);
     padding: 1%;
     box-shadow: 0 0 5px white;
 
@@ -328,12 +311,12 @@ main {
     flex-direction: column;
     justify-content: space-between;
     font-weight: 700;
-    color: var(--dark-pink);
+    color: var(--dark-purple);
     max-width: 100%;
 }
 
 .day:hover {
-    background-color: var(--lighter-pink);
+    background-color: var(--lighter-purple);
 }
 
 /* ======= Modal Events ========= */
@@ -369,7 +352,7 @@ main {
     z-index: 20000;
     position: absolute;
     padding: 10px 10px 25px;
-    background-color: var(--dark-pink);
+    background-color: var(--dark-purple);
     color: white;
     box-shadow: 0px 0px 3px white;
     border-radius: 5px;
@@ -548,7 +531,7 @@ legend {
     margin-inline: auto;
     background: transparent;
     border: 2px solid rgba(169, 4, 76, 0.576);
-    color: var(--dark-pink);
+    color: var( --dark-purple);
     border-radius: 10px;
     padding: 30px 35px;
     backdrop-filter: blur(20px);
@@ -577,14 +560,14 @@ legend {
     border: 1px solid rgba(169, 4, 76, 0.576);
     border-radius: 10px;
     font-size: 16px;
-    color: var(--dark-pink);
+    color: var(--dark-purple);
     padding: 0.2rem 20px;
     margin-left: -20px;
     font-weight: 600;
 }
 
 .input-box input::placeholder {
-    color: var(--dark-pink); 
+    color: var(--dark-purple); 
     font-weight: 500;
 }
 .wrapper .remember-forgot {
@@ -596,11 +579,11 @@ legend {
 }
 
 .remember-forgot label input {
-    accent-color: var(--dark-pink);
+    accent-color: var(--dark-purple);
     margin-right: 3px;
 }
 .remember-forgot a {
-    color: var(--dark-pink);
+    color: var(--dark-purple);
     text-decoration: none;
     &:hover {
         text-decoration: underline;
@@ -612,7 +595,7 @@ legend {
     width: 100%;
     height: 45px;
     max-width: 100%;
-    background: var(--dark-pink);
+    background: var(--dark-purple);
     border: none;
     outline: none;
     border-radius: 10px;
@@ -627,7 +610,7 @@ legend {
 }
 
 input:invalid {
-    border-color: var(--dark-pink);
+    border-color: var(--dark-purple);
 }
 
 input:focus:invalid {
@@ -677,9 +660,8 @@ input:focus:invalid {
     align-items: center;
     padding: 0 2%;
     font-size: 18px;
-    color: var(--dark-pink);
+    color: var(--dark-purple);
     font-weight: 900;
-    
 }
 
 .alert > span {
@@ -689,7 +671,7 @@ input:focus:invalid {
 /*   Calendar prediction msg   */
 
 .calendar-msg-container {
-    background-color: var(--dark-pink);
+    background-color: var(--dark-purple);
     width: 700px;
     max-width: 100%;
     padding: 1%;
@@ -746,7 +728,7 @@ footer {
 
     html {
         background-image: none;
-        background: var(--light-pink);
+        background: var(--light-purple);
         
         
     }
@@ -840,5 +822,4 @@ footer {
         font-size: 15px;
     }
     
-   
 }
