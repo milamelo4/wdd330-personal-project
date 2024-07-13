@@ -39,52 +39,48 @@ export async function renderSymptoms() {
   
 }
 
-function getMenstrualPhaseMessage(endDate, startDate, currentDate) {
+export function getMenstrualPhaseMessage(endDate, startDate, currentDate) {
   // Number of milliseconds in one day
   const msInDay = 24 * 60 * 60 * 1000;
+  //console.log(`msInDay ${msInDay}`);
   // Calculate the difference in days
-  const daysDifference = Math.floor((currentDate - startDate) / msInDay)
-  const cycleLength = Math.floor((endDate - startDate) / msInDay) + 1
+  const daysSinceEnd = Math.floor((currentDate - startDate) / msInDay);
+  //console.log(`daysSinceStart ${daysSinceStart}`); // 4
+;
+  const daysSinceStart = Math.floor((currentDate - endDate) / msInDay);
+  // console.log(`daysSinceEnd ${daysSinceEnd}`);
+  // console.log(`currentDate ${currentDate}`);
+  // console.log(`startDate ${startDate}`);
+  // console.log(`endDate ${endDate}`)
+  // console.log(`daysSinceStart ${daysSinceStart}`);
 
-  if (daysDifference < 0) {
-    return 'The start date is in the future.'
+  let toDay = new Date()
+  // console.log(toDay)
+
+  if (daysSinceStart >= 0 && daysSinceStart <= 5 ) {
+    return `Today is day ${daysSinceStart + 1} of your period.`;
+  } 
+  else if (daysSinceStart > 5 && daysSinceStart <= 14) {
+    return `Today is day ${daysSinceStart + 1}. You are in the follicular phase.`;
+  } 
+  else if (daysSinceStart > 14 && daysSinceStart <= 21 ) {
+    return `Today is day ${daysSinceStart + 1}. You are in the ovulation phase.`;
+  } 
+  else if (daysSinceStart > 21 && daysSinceStart <= 28) {
+    return `Today is day ${daysSinceStart + 1}. You are in the luteal phase.`;
+  } 
+  else if (daysSinceEnd > 0) {
+    return `It's been ${daysSinceEnd} days since your period ended.`;
+  } else {
+    return `Today is day ${daysSinceStart + 1} of your cycle.`;
   }
-
-  if (daysDifference === 0) {
-    return 'Today is your first day.'
-  }
-
-  if (daysDifference <= 5) {
-    return `Today is day ${daysDifference + 1} of your period.`
-  }
-
-  if (daysDifference <= 14) {
-    return `Today is day ${
-      daysDifference + 1
-    }. You are in the follicular phase.`
-  }
-
-  if (daysDifference <= 21) {
-    return `Today is day ${
-      daysDifference + 1
-    }. You are in the ovulation phase.`
-  }
-
-  if (daysDifference <= 28) {
-    return `Today is day ${daysDifference + 1}. You are in the luteal phase.`
-  }
-
-  if (daysDifference > 28 && daysDifference < cycleLength) {
-    return `Today is day ${daysDifference + 1} of your cycle.`
-  }
-
-  return 'Your cycle has ended.'
 }
 
 export function updateDateMessage(date) {
   const startDateString = getLocalStorage('startDate')
   let endDateString = getLocalStorage('endDate')
   const currentDate = new Date()
+  // console.log(`currentDates ${currentDate}`);
 
   if (!startDateString) {
     return setContent("#dateMessage", "Start date not set.");

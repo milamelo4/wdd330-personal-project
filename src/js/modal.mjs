@@ -7,45 +7,46 @@ import {
 import {
   updateDateMessage,
   renderSymptoms,
+  getMenstrualPhaseMessage,
 } from "./symptomsDetails.mjs";
 
-let clicked = null
-const newEventModal = qs('#newEventModal')
-const deleteEventModal = qs('#deleteEventModal')
-const backDrop = qs('#modalBackDrop')
-const dateMessage = qs("#dateMessage")
+let clicked = null;
+const newEventModal = qs('#newEventModal');
+const deleteEventModal = qs('#deleteEventModal');
+const backDrop = qs('#modalBackDrop');
+const dateMessage = qs("#dateMessage");
 
-let events = getLocalStorage('events') || []
+let events = getLocalStorage('events') || [];
 
  export function openModal(date) {
-  events = getLocalStorage('events') || []
-  clicked = date// Set which day the user clicked
+  events = getLocalStorage('events') || [];
+  clicked = date;// Set which day the user clicked
   // console.log(`start date: ${clicked}`)
 
-  const eventForDay = events.find((e) => e.date == clicked)
+  const eventForDay = events.find((e) => e.date == clicked);
     
    // setContent('#startDate', displayToCalendar(clicked));
    if (eventForDay) {
-     qs('#eventText').innerHTML = eventForDay.title
-     deleteEventModal.style.display = 'block'
+     qs('#eventText').innerHTML = eventForDay.title;
+     deleteEventModal.style.display = 'block';
 
    } else {
-     newEventModal.style.display = 'block'
+     newEventModal.style.display = 'block';
    }
 
-   backDrop.style.display = 'block'
-   qs('#menu-icon').style.display = 'none'
+   backDrop.style.display = 'block';
+   qs('#menu-icon').style.display = 'none';
    
-   renderSymptoms()
-   updateDateMessage(clicked)
+   renderSymptoms();
+  //  updateDateMessage(clicked);
  }
 
 export function saveEvent() {
   let events = getLocalStorage('events') || [];
-  const startPeriodInput = qs('#startPeriod')
-  const endPeriodInput = qs('#endPeriod')
-  let eventTitle = ''
-  let eventType = ''
+  const startPeriodInput = qs('#startPeriod');
+  const endPeriodInput = qs('#endPeriod');
+  let eventTitle = '';
+  let eventType = '';
   const eventTitleInput = qs('#eventTitleInput');
 
   const selectedFlow = qs('input[name="flow"]:checked');
@@ -55,12 +56,15 @@ export function saveEvent() {
     eventTitle = 'Start period';
     eventType = 'start';
     setLocalStorage('startDate', clicked);
-  } else if (endPeriodInput.checked) {
+
+  } 
+  else if (endPeriodInput.checked) {
     eventTitle = 'End period';
     eventType = 'end';
     setLocalStorage('endDate', clicked);
+  } 
 
-  } else if (eventTitleInput.value.trim() === '') {
+  else if (eventTitleInput.value.trim() === '') {
     eventTitleInput.classList.add('error');
     console.log('Error: Event title is required.');
     return;
@@ -79,31 +83,41 @@ export function saveEvent() {
     flow: flowIntensity,
     notes: eventTitleInput.value.trim()
   })
-
+  
   setLocalStorage('events', events) // Save events to localStorage
   // console.log('Calling closeModal')
- 
-  displayMessage(eventTitle, clicked)
+  
+ if (eventTitle === 'Start period' || eventTitle === 'End period') {
+   displayMessage(eventTitle, clicked); // Display the message
+    }
   // Reload the calendar to reflect the new event
-  load()
+  
   closeModal()
+  load()
 }
 
 
 export function deleteEvent() {
-  events = events.filter((e) => e.date !== clicked)
+  events = events.filter((e) => e.date !== clicked);
   setLocalStorage('events', events);
   // console.log("Event deleted:", clicked)
-  clearMessage()
+  clearMessage();
   closeModal();
-  load()
+  load();
   
+}
+
+export function cancelEvent() {
+  clicked = null;
+  closeModal();
+  load();
+ 
 }
 
 function displayMessage(eventTitle, date) {
   const today = new Date();
   const clickedDate = new Date(date);
-
+  //console.log(clickedDate);
   if (clickedDate.toDateString() === today.toDateString()) {
     dateMessage.innerHTML = `Today is your first day of ${eventTitle}.`
 
@@ -113,14 +127,18 @@ function displayMessage(eventTitle, date) {
     )
     dateMessage.innerHTML = `It's been ${daysDifference} days since your ${eventTitle}.`
   }
-
+  // if (eventTitle === 'End date') {
+  //   updateDateMessage(today)
+  // }
   setLocalStorage('lastMessage', { eventTitle, date })
+  //loadMessage()
+  
 }
 
 export function loadMessage() {
-  const lastMessage = getLocalStorage('lastMessage')
+  const lastMessage = getLocalStorage("lastMessage");
   if (lastMessage) {
-    updateDateMessage(lastMessage.date)
+    updateDateMessage(lastMessage.eventTitle, lastMessage.date);
   }
 }
 

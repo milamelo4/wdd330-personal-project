@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="website icon" type="png" href="./images/cardiogram.png" alt="Medical icons created by Freepik - Flaticon" title="medical icons">
     <script type="module" src="./js/main.js"></script>
-    <script type="module" src="./js/partials.js"></script>
     <script type="module" src="./js/menu.js"></script>
     <title>Calendar</title>
 </head>
@@ -82,6 +81,7 @@
         </div>
         <div class="calendar-msg-container">
             <div id="dateMessage"></div>
+            <div id="update"></div>
         </div>
        
         <div id="newEventModal" class="newEventModal">
@@ -145,7 +145,7 @@
             </div>
             <div class="text-area">
                 <p>Personal Notes:</p>
-                <textarea id="eventTitleInput" placeholder="Notes" class="eventTitleInput" cols="30" rows="10"></textarea>
+                <textarea id="eventTitleInput" placeholder="Write any extra personal note..." class="eventTitleInput" cols="30" rows="10"></textarea>
             </div>
             <button id="saveButton">Save</button>
             <button id="cancelButton">Cancel</button>

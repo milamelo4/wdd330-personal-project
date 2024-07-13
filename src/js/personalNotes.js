@@ -29,27 +29,27 @@ function getFlowSVGs(flow) {
   const mediumSVG = lightSVG + lightSVG;
   const heavySVG = lightSVG + lightSVG + lightSVG;
 
-  if (flow === "light") return lightSVG;
-  if (flow === "medium") return mediumSVG;
-  if (flow === "heavy") return heavySVG;
-  return "";
+  if (flow === 'light') return lightSVG;
+  if (flow === 'medium') return mediumSVG;
+  if (flow === 'heavy') return heavySVG;
+  return '';
 }
 
 function displayNotes() {
-  const notesUl = qs("#noteCard");
-  notesUl.innerHTML = ""; // Clear any existing content
-  let events = getLocalStorage("events") || [];
+  const notesUl = qs('#noteCard');
+  notesUl.innerHTML = ''; // Clear any existing content
+  let events = getLocalStorage('events') || [];
 
   const averageCycleDays = calculateAverageCycleDays();
   let startDate = null;
 
   events.forEach((event) => {
-    const noteLi = document.createElement("li");
-    if (event.type === "start") {
+    const noteLi = document.createElement('li');
+    if (event.type === 'start') {
       startDate = event.date;
       const capitalizedSymptoms = event.symptoms
         .map((symptom) => capitalize(symptom))
-        .join(", ");
+        .join(', ');
       noteLi.innerHTML = `
     <h3 class="notesH3">Start: ${startDate} - End: ${getEndDate(
         events,
@@ -84,7 +84,9 @@ function calculateAverageCycleDays() {
   events.forEach((event) => {
     if (event.type === "start") {
       startDate = new Date(event.date);
-    } else if (event.type === "end" && startDate) {
+    } 
+    
+    else if (event.type === "end" && startDate) {
       const endDate = new Date(event.date);
       const cycleLength = (endDate - startDate) / (1000 * 60 * 60 * 24); // Convert milliseconds to days
       cycleLengths.push(cycleLength);
@@ -95,7 +97,7 @@ function calculateAverageCycleDays() {
   if (cycleLengths.length === 0) {
     return 0;
   }
-
+  // Add length
   const totalCycleLength = cycleLengths.reduce(
     (acc, length) => acc + length,
     0
@@ -103,6 +105,6 @@ function calculateAverageCycleDays() {
   return totalCycleLength / cycleLengths.length
 }
 
-welcomeUser()
-displayNotes()
+welcomeUser();
+displayNotes();
 

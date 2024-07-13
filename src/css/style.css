@@ -360,6 +360,7 @@ main {
 
 .currentDay {
     background-color: var(--light-blue);
+    color: rgb(10, 10, 56);
 }
 
 .newEventModal,
@@ -505,9 +506,10 @@ legend {
     display: block;
     width: 20px;
     height: 20px;
-    fill: var(--light-pink);
-    margin-left: 10px ;
-    margin-right: 5px;
+    fill: rgb(185, 19, 19);
+    margin-left: 3px ;
+    margin-right: 3px;
+    
     
 }
 
