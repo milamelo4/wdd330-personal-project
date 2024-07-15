@@ -2,7 +2,7 @@ import { load } from "./calendar.js";
 import {
   setLocalStorage,
   qs,
-  getLocalStorage, alertMessage,
+  getLocalStorage, alertMessage, setContent
 } from "./utils.mjs";
 import {
   updateDateMessage,
@@ -97,11 +97,12 @@ export function saveEvent() {
 export function deleteEvent() {
   events = events.filter((e) => e.date !== clicked);
   setLocalStorage('events', events);
-  alertMessage('Event deleted');
+  alertMessage(`Event ${clicked} deleted`);
   // console.log("Event deleted:", clicked)
   clearMessage(); // clear msg
   closeModal(); // close modal
   load(); // reset
+  
 }
 
 export function cancelEvent() {
@@ -127,16 +128,24 @@ function displayMessage(eventTitle, date) {
   //   updateDateMessage(today)
   // }
   setLocalStorage('lastMessage', {eventTitle, date}); // save msg to localStorage
+  updateDateMessage()
 }
 
 export function loadMessage() {
-  // Update msg based on events
-  updateDateMessage();
+  const lastMessage = getLocalStorage("lastMessage");
+  if (lastMessage) {
+    updateDateMessage(lastMessage.date);
+  } else {
+    setContent("#dateMessage", "<li>Start date not set.</li>"); // Clear the message if there is no last message
+  }
+  
 }
 
 function clearMessage() {
-  dateMessage.innerHTML = ''
+  //dateMessage.innerHTML = ''
   setLocalStorage('lastMessage', null);
+  setLocalStorage("startDate", null);
+  updateDateMessage()
 }
 
 export function closeModal() {

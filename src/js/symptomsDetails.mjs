@@ -3,6 +3,7 @@ import {
   getSymptoms,
   capitalize,
   getLocalStorage,
+  setLocalStorage,
 } from "./utils.mjs";
 
 export async function renderSymptoms() {
@@ -61,27 +62,29 @@ export function getMenstrualPhaseMessage(endDate, startDate, currentDate) {
   // console.log(`startDate ${startDate}`);
   // console.log(`endDate ${endDate}`)
   // console.log(`daysSinceStart ${daysSinceStart}`);
-
+  
   if (daysSinceStart >= 0 && daysSinceStart <= 5 ) {
-    return `Today is day ${daysSinceStart + 1} of your period.<br> - ${nextPeriodMessage}`;
+    return `<li>Today is day ${daysSinceStart + 1} of your period.</li> 
+    <li>${nextPeriodMessage}</li>`;
   } 
   else if (daysSinceStart > 5 && daysSinceStart <= 14) {
-    return `Today is day ${
-      daysSinceStart + 1
-    } of this cycle.<br> - You are in the follicular phase. <br> - ${nextPeriodMessage}`;
+    return `<li>Today is day ${daysSinceStart + 1} of this cycle.</li> 
+    <li>You are in the follicular phase.</li>
+    <li>${nextPeriodMessage}</li>`;
   } 
   else if (daysSinceStart > 14 && daysSinceStart <= 21 ) {
-    return `Today is day ${
-      daysSinceStart + 1
-    } of this cycle.<br> - You are in the ovulation phase. <br> - ${nextPeriodMessage}`;
+    return `<li>Today is day ${daysSinceStart + 1} of this cycle.</li>
+     <li>You are in the ovulation phase.</li>
+     <li>${nextPeriodMessage}</li>`;
   } 
   else if (daysSinceStart > 21 && daysSinceStart <= 28) {
-    return `Today is day ${
-      daysSinceStart + 1
-    } of this cycle.<br> - You are in the luteal phase. <br> - ${nextPeriodMessage}`;
+    return `<li>Today is day ${daysSinceStart + 1} of this cycle.</li>  
+    <li>You are in the luteal phase.</li> 
+    <li>>${nextPeriodMessage}</li>`;
   } 
   else if (daysSinceEnd > 0) {
-    return `It's been ${daysSinceEnd} days since your period ended. <br> - ${nextPeriodMessage}`;
+    return `<li>It's been ${daysSinceEnd} days since your period ended. </li> 
+    <li>${nextPeriodMessage}</li>`;
   } 
   // else {
   //   return `Today is day ${daysSinceStart + 1} of your cycle.`;
@@ -90,25 +93,27 @@ export function getMenstrualPhaseMessage(endDate, startDate, currentDate) {
 
 // Update calendar msg based on startDate, endDate and currentDate
 export function updateDateMessage() {
-  const startDateString = getLocalStorage('startDate');
-  let endDateString = getLocalStorage('endDate');
+  const startDateString = getLocalStorage("startDate");
+  let endDateString = getLocalStorage("endDate");
   const currentDate = new Date();
   // console.log(`currentDates ${currentDate}`);
 
   if (!startDateString) {
-    return setContent('#dateMessage', 'Start date not set.');
-  };
+    return setContent("#dateMessage", "<li>Dates not set.</li>");
+  }
 
   const startDate = new Date(startDateString);
   let endDate = endDateString ? new Date(endDateString) : null;
 
   if (!endDate) {
-    // If end date is not set, use a default cycle length 
+    // If end date is not set, use a default cycle length
     endDate = new Date(startDate);
     endDate.setDate(endDate.getDate() + 28); // Assuming a default cycle length of 28 days
-  };
+  }
 
-  // Call function set msg  
+  // Call function set msg
   const message = getMenstrualPhaseMessage(startDate, endDate, currentDate);
-  return setContent('#dateMessage', `- ${message}`);
+  setContent("#dateMessage", `${message}`);
+  // Save the last message to localStorage
+  setLocalStorage("lastMessage", { date: currentDate });
 }

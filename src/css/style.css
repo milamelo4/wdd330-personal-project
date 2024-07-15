@@ -116,7 +116,7 @@ nav a {
     top: -25px;
     right: 0;
     padding: 1.5em;
-    transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+    transition: transform 0.5s ease;
 }
 
 .lines .first {
@@ -340,10 +340,24 @@ main {
     background-color: #FFFCFF !important;
     box-shadow: none !important;
 }
-
+.currentDay::before {
+    content: '';
+    width: 28px;
+    height: 28px;
+    /* background-color: #e2484871; */
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border-radius: 50px ;
+    border: 1px solid white;
+   
+   
+}
 .currentDay {
     background-color: var(--light-blue);
-    color: rgb(10, 10, 56);
+    color: black;
+    padding-top: 3px;
+    position: relative;
 }
 
 .newEventModal,
@@ -507,6 +521,7 @@ legend {
 .flow-title {
     font-size: smaller;
 }
+
 
 /* .start-end input {
     font-size: 20px;
@@ -674,13 +689,16 @@ input:focus:invalid {
     background-color: var(--dark-purple);
     width: 700px;
     max-width: 100%;
-    padding: 1%;
+    padding: 0.5% 1%;
     margin-inline: auto;
     color: white;
     font-size: 18px;
     box-shadow: 0 0 5px white;
-    & div {
-        padding-left: 6%;
+    display: flex;
+    
+    & li {
+        list-style-position: inside;
+        margin-bottom: 10px;
     }
 }
 
@@ -701,10 +719,8 @@ input:focus:invalid {
         width: 300px;
         justify-items: center;
     }
-    
-    
-    
 }
+
 footer {
     opacity: 1;
     width: 700px;
@@ -795,6 +811,9 @@ footer {
     .deleteEventModal, .newEventModal {
         top: 0;
         width: 345px;
+    }
+    .calendar-msg-container li{
+        margin-bottom: 0;
     }
 
     /* login */
