@@ -51,7 +51,10 @@ export function getMenstrualPhaseMessage(endDate, startDate, currentDate) {
   const nextPeriodStartDate = new Date(
     startDate.getTime() + averageCycleLength * msInDay
   );
-  const nextPeriodMessage = `Your next period is expected to start on ${nextPeriodStartDate.toLocaleDateString()}.`;
+  const nextPeriodMessage = `Your next period is expected to start on ${nextPeriodStartDate.toLocaleDateString(
+    "en-US",
+    { year: "numeric", month: "2-digit", day: "2-digit" } // Changed to this format to display correct on mobile.
+  )}`;
   //console.log(nextPeriodMessage)
   // console.log(`daysSinceEnd ${daysSinceEnd}`);
   // console.log(`currentDate ${currentDate}`);
