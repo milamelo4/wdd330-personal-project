@@ -24,7 +24,6 @@
 html {
     content: "";
     background-image: url("../images/pexels-pixabay-262713.jpg");
-    /* height: 200%; */
     width: 100%;
     max-width: 100%;
     background-position: center;
@@ -46,11 +45,12 @@ body{
 .bg {
     padding-bottom: 20px;
 }
+
 .logo-img {
     display: flex;
     justify-content: left;
-    
 }
+
 .logo-img img{
    width: 50%;
    margin-top: -30px;
@@ -86,7 +86,6 @@ nav ul {
     flex: 1;
     line-height: 2em;
     padding: 2%;
-   
 }
 
 nav li {
@@ -129,7 +128,7 @@ nav a {
     flex-direction: column;
     width: 40px;
     height: 4px;
-    background-color: whitesmoke;
+    background-color: white;
     margin-bottom: 5px;
     border-radius: 5px;
     transition: all 0.2s ease;
@@ -174,14 +173,13 @@ nav a {
 .open .lines .third {
     transform: rotate(-45deg);
     margin-bottom: -5px;
-    background-color: whitesmoke;
+    background-color: white;
 }
 
 .open .lines .third:hover {
     background-color: var(--light-purple);
     transition: background-color 50ms ease;
 }
-
 
 #nav-container.open nav {
     display: flex;
@@ -200,21 +198,18 @@ nav a {
     font-weight: 800;
 }
 
-
-
 .welcome-msg {
     display: flex;
     font-style: oblique;
     font-weight: 300;
-    color: whitesmoke;
+    color: white;
     margin-block: 0;
 }
 
-
 .redDot {
-color: var(--dark-purple);
-font-size: 52px;
-text-shadow: none;
+    color: var(--dark-purple);
+    font-size: 52px;
+    text-shadow: none;
 }
 
 .calendar-header > button,
@@ -240,15 +235,12 @@ button {
 
  .bg {
     z-index: 999;
-    /* position: absolute;
-    top: 15%; */
     width: 700px;
     max-width: 100%;
     margin: auto;
     background-color: var(--light-purple);
     padding: 1%;
     box-shadow: 0 0 5px white;
-
 }
 
 .main-header {
@@ -259,7 +251,6 @@ button {
     margin-inline: auto;
     padding: 3% 1%;
     box-shadow: 0 0 5px white;
-   
 }
 
 main {
@@ -283,7 +274,6 @@ main {
         justify-content: space-evenly;
         text-align: center;
     }
-
 }
 
 .caleContainer {
@@ -340,19 +330,18 @@ main {
     background-color: #FFFCFF !important;
     box-shadow: none !important;
 }
+
 .currentDay::before {
     content: '';
     width: 28px;
     height: 28px;
-    /* background-color: #e2484871; */
     position: absolute;
     top: 0px;
     left: 0px;
     border-radius: 50px ;
     border: 1px solid white;
-   
-   
 }
+
 .currentDay {
     background-color: var(--light-blue);
     color: black;
@@ -365,7 +354,7 @@ main {
     display: none;
     z-index: 20000;
     position: absolute;
-    padding: 10px 10px 25px;
+    padding: 10px 10px 30px;
     background-color: var(--dark-purple);
     color: white;
     box-shadow: 0px 0px 3px white;
@@ -373,12 +362,9 @@ main {
     width: 800px;
     height: max-content;
     max-width: 100%;
-    inset: 0;
-    top: 50px;
+    inset: 50px 0 0 0;
     margin-inline: auto;
-    padding-bottom: 20px;
     scroll-behavior: smooth;
-    /* z-index: 10000; */
     & h2 {
         color: white;
         text-align: center;
@@ -404,11 +390,17 @@ main {
     border: 2px solid red;
 }
 
+.del-cls-btn button{
+    width: 150px;
+    margin-left: 2%;
+    font-size: 20px;
+    background-color: rgba(45, 18, 62, 0.97);
+    box-shadow: 0 0 5px white;
+}
 
 #closeButton {
     background-color: #e24848;
-
-    & :hover {
+    &:hover {
         color: #e24848;
         background-color: white;
     }
@@ -419,15 +411,16 @@ main {
     padding: 2%;
     margin: 10px;
     font-size: 20px;
-    background-color: rgba(45, 18, 62, 0.97);
+   
     &:hover {
         color: var(--lt);
         background-color: white;
-        transition: all .4s ease;
+        transition: background-color .4s ease;
     }
 }
 .eventText {
-    font-size: 14px;
+    font-size: 20px;
+    margin-left: 2%;
 }
 
 #modalBackDrop {
@@ -478,36 +471,33 @@ legend {
 }
 .start-end label {
     display: block;
-   accent-color: red; 
-   font-size: 20px;
-   margin: 1%;
+    accent-color: red; 
+    font-size: 20px;
+    margin: 1%;
 }
 
 .radio  {
     font-size: 18px;
     accent-color: red;
-    
 }
+
 .flow-container label{
     display: flex;
     margin: 2%;
     font-size: 18px;
     accent-color: red;
-    
-    
 }
+
 .text-area {
     margin-left: 1%;
 }
+
 .drop {
     display: block;
     width: 20px;
     height: 20px;
     fill: rgb(185, 19, 19);
-    margin-left: 3px ;
-    margin-right: 3px;
-    
-    
+    margin-inline: 3px ;
 }
 
 .drop-notes {
@@ -515,17 +505,12 @@ legend {
     height: 20px;
     fill: rgb(185, 19, 19);
     margin-inline: 2px;
-    /* stroke: white;
-    stroke-width: 2px; */
 }
+
 .flow-title {
     font-size: smaller;
 }
 
-
-/* .start-end input {
-    font-size: 20px;
-} */
 
 /* ======= Login ========*/
 
@@ -535,23 +520,19 @@ legend {
     width: 700px;
     padding: 2% 0;
     max-width: 100%;
-    /* height: 100vh; */
-    /* background: url("../images/pexels-pixabay-262713.jpg");
-    background-size: cover;
-    background-position: left; */
 }
 
 .wrapper {
     width: 400px;
     margin-inline: auto;
     background: transparent;
-    border: 2px solid rgba(169, 4, 76, 0.576);
+    border: 2px solid var(--dark-purple);
     color: var( --dark-purple);
     border-radius: 10px;
     padding: 30px 35px;
     backdrop-filter: blur(20px);
     backface-visibility: visible;
-    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    box-shadow: 0 0 10px rgba(255, 254, 254, 0.1);
 }
 
 .wrapper h1 {
@@ -585,6 +566,7 @@ legend {
     color: var(--dark-purple); 
     font-weight: 500;
 }
+
 .wrapper .remember-forgot {
     display: flex;
     justify-content: space-between;
@@ -597,6 +579,7 @@ legend {
     accent-color: var(--dark-purple);
     margin-right: 3px;
 }
+
 .remember-forgot a {
     color: var(--dark-purple);
     text-decoration: none;
@@ -610,7 +593,7 @@ legend {
     width: 100%;
     height: 45px;
     max-width: 100%;
-    background: var(--dark-purple);
+    background-color: var(--dark-purple);
     border: none;
     outline: none;
     border-radius: 10px;
@@ -665,12 +648,12 @@ input:focus:invalid {
     background-color: hsl(288, 69%, 90%);
     opacity: 1;
     transition: opacity .5s ease-out;
-    
 }
 
 .fade-out {
     opacity: 0;
 }
+
 .alert > * {
     align-items: center;
     padding: 0 2%;
@@ -683,7 +666,7 @@ input:focus:invalid {
     cursor: pointer;
 }
 
-/*   Calendar prediction msg   */
+/* ========== Calendar prediction msg ==============   */
 
 .calendar-msg-container {
     background-color: var(--dark-purple);
@@ -695,14 +678,13 @@ input:focus:invalid {
     font-size: 18px;
     box-shadow: 0 0 5px white;
     display: flex;
-    
     & li {
         list-style-position: inside;
         margin-bottom: 10px;
     }
 }
 
-/*  ========  Personal Notes Entries =======           */
+/*  ========  Personal Notes Entries ======= */
 
 #note {
    margin-left: -35px;
@@ -728,29 +710,29 @@ footer {
     display: block;
     margin-inline: auto;
     background-color: var(--lt);
-    margin-top: -19px;
+    /* margin-top: -20px; */
     padding: 0.2em 1%;
    
     & p {
         font-style: 800;
         font-size: 18px;
+        margin-left: 2%;
     }
-    
 }
 
      
-
+/* ============== Mobile View ================*/
 @media (width < 460px) {
 
     html {
         background-image: none;
         background: var(--light-purple);
-        
-        
     }
+
     .logo-img {
         padding-top: 20px;
     }
+
     body, header{
         display: block;
         margin: 0;
@@ -763,6 +745,7 @@ footer {
         box-shadow: none;
         padding-bottom: 20px;
     }
+
     .main-container {
         display: block;
         margin: 0;
@@ -792,12 +775,16 @@ footer {
         width: 40px;
         height: 40px;
         margin-inline: 5px;
-        
+    }
+
+    .eventText {
+        font-size: 14px;
     }
     
     .caleContainer{
         width: 360px;
     }
+
     .welcome-msg {
         font-size: 20px;
     }
@@ -812,11 +799,12 @@ footer {
         top: 0;
         width: 345px;
     }
+
     .calendar-msg-container li{
         margin-bottom: 0;
     }
 
-    /* login */
+    /* ==========login========================= */
     
     .wrapper {
         width: 300px;
@@ -824,7 +812,7 @@ footer {
     }
 
     .lines:hover .line:hover {
-        background-color: whitesmoke;
+        background-color: white;
     }
 
     .emotionForm{

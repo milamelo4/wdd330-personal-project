@@ -1,4 +1,4 @@
-import { load } from "./calendar.js";
+import { load } from "./calendar.mjs";
 import {
   setLocalStorage,
   qs,
@@ -23,8 +23,8 @@ export function openModal(date) {
   // console.log(`start date: ${clicked}`)
 
   const eventForDay = events.find((e) => e.date == clicked);
-    
-    // setContent('#startDate', displayToCalendar(clicked));
+  
+  // Check for event
   if (eventForDay) {
     qs('#eventText').innerHTML = eventForDay.title;
     deleteEventModal.style.display = 'block';
@@ -40,30 +40,33 @@ export function openModal(date) {
  }
 
 export function saveEvent() {
-  let events = getLocalStorage("events") || [];
-  const startPeriodInput = qs("#startPeriod");
-  const endPeriodInput = qs("#endPeriod");
-  let eventTitle = "";
-  let eventType = "";
-  const eventTitleInput = qs("#eventTitleInput");
+  let events = getLocalStorage('events') || [];
+  const startPeriodInput = qs('#startPeriod');
+  const endPeriodInput = qs('#endPeriod');
+  let eventTitle = '';
+  let eventType = '';
+  const eventTitleInput = qs('#eventTitleInput');
 
   // Check flow
   const selectedFlow = qs('input[name="flow"]:checked');
-  const flowIntensity = selectedFlow ? selectedFlow.value : null;
+  const flowIntensity = selectedFlow ? selectedFlow.value : null; // Return null if not entered
 
+  // If start date selected
   if (startPeriodInput.checked) {
-    eventTitle = "Start period";
-    eventType = "start";
-    setLocalStorage("startDate", clicked);
+    eventTitle = 'Start period';
+    eventType = 'start';
+    setLocalStorage('startDate', clicked); // Set to localStorage
+    alertMessage(eventTitle); // Alert event
+  } 
+  else if (endPeriodInput.checked) {
+    eventTitle = 'End period';
+    eventType = 'end';
+    setLocalStorage('endDate', clicked);
     alertMessage(eventTitle);
-  } else if (endPeriodInput.checked) {
-    eventTitle = "End period";
-    eventType = "end";
-    setLocalStorage("endDate", clicked);
-    alertMessage(eventTitle);
-  } else if (eventTitleInput.value.trim() === "") {
-    eventTitleInput.classList.add("error");
-    console.log("Error: Event title is required.");
+  } 
+  else if (eventTitleInput.value.trim() === '') {
+    eventTitleInput.classList.add('error');
+    console.log('Error: Event title is required.');
     return;
   }
 
@@ -82,27 +85,50 @@ export function saveEvent() {
     notes: eventTitleInput.value.trim(),
   });
 
-  setLocalStorage("events", events); // Save events to localStorage
+  setLocalStorage('events', events); // Save events to localStorage
 
-  if (eventTitle === "Start period" || eventTitle === "End period") {
+  if (eventTitle === 'Start period' || eventTitle === 'End period') {
     displayMessage(eventTitle, clicked); // Display the message
   }
 
   // close modal
   closeModal();
-  // Reload the calendar to reflect the new event
+  // load the calendar to reflect the new event
   load();
 }
 
 export function deleteEvent() {
+  let events = getLocalStorage('events') || [];
+  // check which event was clicked
+  const eventToDelete = events.find((e) => e.date === clicked);
+
+  if (eventToDelete) {
+    if (eventToDelete.type === 'start') {
+      localStorage.removeItem('startDate');
+      alertMessage('Start date removed');
+    } 
+    else if (eventToDelete.type === 'end') {
+      localStorage.removeItem('endDate');
+      alertMessage('End date removed');
+    }
+  }
+
   events = events.filter((e) => e.date !== clicked);
-  setLocalStorage('events', events);
-  alertMessage(`Event ${clicked} deleted`);
-  // console.log("Event deleted:", clicked)
+  setLocalStorage('events', events); // set localStorage
   clearMessage(); // clear msg
   closeModal(); // close modal
   load(); // reset
-  
+
+  // Update the message based on the remaining start and end dates
+  const startDateString = getLocalStorage('startDate');
+  let endDateString = getLocalStorage('endDate');
+
+  if (startDateString) {
+    updateDateMessage(new Date()); // Update message based on the current date
+  } 
+  else {
+    setContent('#dateMessage', 'Start date not set.');
+  }
 }
 
 export function cancelEvent() {
@@ -117,35 +143,32 @@ function displayMessage(eventTitle, date) {
   //console.log(clickedDate);
   if (clickedDate.toDateString() === today.toDateString()) {
     dateMessage.innerHTML = `Today is your first day of ${eventTitle}.`;
-
   } else {
     const daysDifference = Math.floor(
       (today - clickedDate) / (1000 * 60 * 60 * 24)
     );
     dateMessage.innerHTML = `It's been ${daysDifference} days since your ${eventTitle}.`;
-  };
-  // if (eventTitle === 'End date') {
-  //   updateDateMessage(today)
-  // }
-  setLocalStorage('lastMessage', {eventTitle, date}); // save msg to localStorage
-  updateDateMessage()
+  }
+  // save msg to localStorage
+  setLocalStorage("lastMessage", { eventTitle, date });
+  updateDateMessage();
 }
 
 export function loadMessage() {
-  const lastMessage = getLocalStorage("lastMessage");
+  const lastMessage = getLocalStorage('lastMessage');
   if (lastMessage) {
     updateDateMessage(lastMessage.date);
-  } else {
-    setContent("#dateMessage", "<li>Start date not set.</li>"); // Clear the message if there is no last message
+  } 
+  else {
+    setContent('#dateMessage', '<li>Start date not set.</li>'); // Clear the message if there is no last message
   }
-  
 }
 
 function clearMessage() {
   //dateMessage.innerHTML = ''
   setLocalStorage('lastMessage', null);
-  setLocalStorage("startDate", null);
-  updateDateMessage()
+  // setLocalStorage("startDate", null);
+  updateDateMessage();
 }
 
 export function closeModal() {

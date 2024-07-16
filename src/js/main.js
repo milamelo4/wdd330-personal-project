@@ -1,5 +1,4 @@
-import { load, initBtn } from "./calendar.js";
-
+import { load, initBtn } from "./calendar.mjs";
 import { loadMessage } from "./modal.mjs";
 
 document.addEventListener("DOMContentLoaded", () => {

@@ -47,6 +47,7 @@ function displayNotes() {
   const averageCycleDays = calculateAverageCycleDays();
   let startDate = null; // set start to null
 
+  // for each event return a list of symptoms
   events.forEach((event) => {
     const noteLi = document.createElement('li');
     if (event.type === 'start') {
@@ -55,7 +56,6 @@ function displayNotes() {
         .map((symptom) => capitalize(symptom))
         .join(', ');
       noteLi.innerHTML = `
-
       <h3 class="notesH3">Start: ${startDate} - End: ${getEndDate(events, startDate)}</h3>
       <div><strong>Cycle Length:</strong> ${averageCycleDays.toFixed(
         0
@@ -71,25 +71,25 @@ function displayNotes() {
 
 function getEndDate(events, startDate) {
   for (let event of events) {
-    if (event.type === "end" && new Date(event.date) > new Date(startDate)) {
+    if (event.type === 'end' && new Date(event.date) > new Date(startDate)) {
       return event.date;
     }
   }
-  return "N/A";
+  return 'N/A';
 }
 
 function calculateAverageCycleDays() {
-  let events = getLocalStorage("events") || [];
+  let events = getLocalStorage('events') || [];
   let cycleLengths = []; // create an array to hold all cycle lengths entered
 
   let startDate = null;
 
   events.forEach((event) => {
-    if (event.type === "start") {
+    if (event.type === 'start') {
       startDate = new Date(event.date); // Ste start date to event date
     } 
     
-    else if (event.type === "end" && startDate) {
+    else if (event.type === 'end' && startDate) {
       const endDate = new Date(event.date);
       const cycleLength = (endDate - startDate) / (1000 * 60 * 60 * 24); // Convert milliseconds to days
       cycleLengths.push(cycleLength);
