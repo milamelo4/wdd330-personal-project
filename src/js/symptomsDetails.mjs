@@ -6,6 +6,7 @@ import {
   setLocalStorage,
 } from "./utils.mjs";
 
+// Fetch JSON and render dynamic form elements
 export async function renderSymptoms() {
   const symptomsList = await getSymptoms();
   const { emotions, physical_symptoms } = symptomsList.symptoms;

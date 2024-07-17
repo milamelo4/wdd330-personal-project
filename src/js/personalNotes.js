@@ -1,4 +1,7 @@
-import { getLocalStorage, qs, capitalize } from "./utils.mjs";
+import { getLocalStorage, 
+  qs, 
+  capitalize 
+} from "./utils.mjs";
 
 let userName = localStorage.getItem('userName') || 'Guest';
 const userId = qs('#displayUserName');

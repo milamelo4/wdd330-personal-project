@@ -2,7 +2,9 @@ import { load } from "./calendar.mjs";
 import {
   setLocalStorage,
   qs,
-  getLocalStorage, alertMessage, setContent
+  getLocalStorage, 
+  alertMessage, 
+  setContent
 } from "./utils.mjs";
 import {
   updateDateMessage,
