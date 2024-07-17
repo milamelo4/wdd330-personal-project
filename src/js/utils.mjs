@@ -90,7 +90,16 @@ async function convertToJson(res) {
 }
 
 export async function getSymptoms() {
-  const response = await fetch("./json/emotions.json");
-  const symptoms = await convertToJson(response);
-  return symptoms;
+  try {
+    const response = await fetch("./json/emotions.json");
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const symptoms = await convertToJson(response);
+    return symptoms;
+  } catch (error) {
+    console.error("Failed to fetch symptoms:", error);
+    // Handle the error returning a default value or rethrowing the error
+    return null;
+  }
 }

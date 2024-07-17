@@ -117,16 +117,13 @@ export function load() {
 
 // Initialize buttons
 export function initBtn() {
-  qs("#nextButton").onclick = () => {
-    nav++;
-    load();
-  };
+  qs("#nextButton").onclick = () => { nav++; load();};
   qs("#backButton").onclick = () => {
     nav--;
     load();
   };
   qs("#cancelButton").onclick = () => cancelEvent();
-  qs("#saveButton").onclick = () => {saveEvent(),
+  qs("#saveButton").onclick = () => {saveEvent();
   load()}; //
   
   qs("#deleteButton").onclick = () => deleteEvent();
