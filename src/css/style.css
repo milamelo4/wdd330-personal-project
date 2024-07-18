@@ -1,21 +1,22 @@
-
 @import url('https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC&display=swap');
 
 :root {
+
     /* Colors */
-    /*  --light-pink: hsl(338, 58%, 73%);
+    /*  --light-pink: hsl(338deg, 58%, 73%);
      --dark-pink: rgb(169, 4, 76);
-    --btn-background: hsl(180, 100%, 94%);
-    --lighter-pink: hsl(4, 100%, 88%);
-    --light-blue: hsla(226, 55%, 88%, 0.718);
-    --light-lime: hsl(55, 45%, 33%); */
-    --lt: hsl(288, 50%, 56%);
-    --light-purple: hsl(288, 46%, 69%);
-    --dark-purple: hsl(277, 54%, 24%);
-    --btn-background: hsl(180, 100%, 94%);
-    --lighter-purple: hsl(4, 100%, 88%);
-    --light-blue: hsla(226, 55%, 88%, 0.718);
-    --light-lime: hsl(282, 37%, 55%);
+    --btn-background: hsl(180deg, 100%, 94%);
+    --lighter-pink: hsl(4deg, 100%, 88%);
+    --light-blue: hsla(226deg, 55%, 88%, 0.718);
+    --light-lime: hsl(55deg, 45%, 33%); */
+
+    --lt: hsl(288deg, 50%, 56%);
+    --light-purple: hsl(288deg, 46%, 69%);
+    --dark-purple: hsl(277deg, 54%, 24%);
+    --btn-background: hsl(180deg, 100%, 94%);
+    --lighter-purple: hsl(4deg, 100%, 88%);
+    --light-blue: hsla(226deg, 55%, 88%, 71.8%);
+    --light-lime: hsl(282deg, 37%, 55%);
 
     /* Fonts */
     --welcome: "LXGW WenKai TC", cursive;
@@ -42,9 +43,7 @@ body{
     font-family: var(--welcome);
 }
 
-.bg {
-    padding-bottom: 20px;
-}
+
 
 .logo-img {
     display: flex;
@@ -57,7 +56,7 @@ body{
    margin-bottom: 1%;
 }
 
-/* ======= nav menu ========        */
+/* ======= nav menu ========  */
 header {
     display: grid;
     grid-template-columns: 500px 1fr;
@@ -185,7 +184,7 @@ nav a {
     display: flex;
     top: 0;
     transform: translateX(0);
-    background-color: rgba(69, 28, 94, 0.97);
+    background-color: rgba(69, 28, 94, 97%);
     z-index: 1000;
 }
 
@@ -208,7 +207,7 @@ nav a {
 
 .redDot {
     color: var(--dark-purple);
-    font-size: 52px;
+    font-size: 520px;
     text-shadow: none;
 }
 
@@ -218,7 +217,7 @@ button {
     padding: 5px;
     border-radius: 5px;
     cursor: pointer;
-    box-shadow: 0px 0px 2px rgb(128, 128, 128);
+    box-shadow: 0 0 2px rgb(128, 128, 128);
     background-color: var(--dark-purple);
     color: white;
     font-size: 16px;
@@ -233,7 +232,7 @@ button {
     }
 }
 
- .bg {
+.bg {
     z-index: 999;
     width: 700px;
     max-width: 100%;
@@ -241,6 +240,7 @@ button {
     background-color: var(--light-purple);
     padding: 1%;
     box-shadow: 0 0 5px white;
+    padding-bottom: 20px;
 }
 
 .main-header {
@@ -296,7 +296,7 @@ main {
     box-sizing: border-box;
     background-color: white;
     margin: 5px;
-    box-shadow: 0px 0px 3px white;
+    box-shadow: 0 0 3px white;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -310,7 +310,6 @@ main {
 }
 
 /* ======= Modal Events ========= */
-
 .event-range {
     background-color: #ea8b8bc5;
 }
@@ -357,12 +356,12 @@ main {
     padding: 10px 10px 30px;
     background-color: var(--dark-purple);
     color: white;
-    box-shadow: 0px 0px 3px white;
+    box-shadow: 0 0 3px white;
     border-radius: 5px;
     width: 800px;
     height: max-content;
     max-width: 100%;
-    inset: 50px 0 0 0;
+    inset: 50px 0 0;
     margin-inline: auto;
     scroll-behavior: smooth;
     & h2 {
@@ -383,26 +382,26 @@ main {
     border-radius: 3px;
     outline: none;
     border: none;
-    box-shadow: 0px 0px 3px gray;
+    box-shadow: 0 0 3px gray;
 }
 
 .eventTitleInput.error {
-    border: 2px solid red;
+    border: 2px solid rgb(255, 0, 0);
 }
 
 .del-cls-btn button{
     width: 150px;
     margin-left: 2%;
     font-size: 20px;
-    background-color: rgba(45, 18, 62, 0.97);
+    background-color: rgba(45, 18, 62, 97%);
     box-shadow: 0 0 5px white;
 }
 
 #closeButton {
-    background-color: #e24848;
+    background-color: rgb(226, 72, 72);
     &:hover {
-        color: #e24848;
-        background-color: white;
+        color: rgb(226, 72, 72);
+        background-color: #ffffff;
     }
 }
 
@@ -418,6 +417,7 @@ main {
         transition: background-color .4s ease;
     }
 }
+
 .eventText {
     font-size: 20px;
     margin-left: 2%;
@@ -427,19 +427,18 @@ main {
     display: none;
     top: 0px;
     left: 0px;
-    z-index: 10;
     width: 100%;
     max-width: 100%;
     height: 200vh;
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 80%);
     z-index: 1000;
 }
 
 /* =========  Modal functionality ==========   */
-
 .newEventModal form {
    display: block;
+
    & label {
     padding: 0.2%;
    }
@@ -449,6 +448,7 @@ main {
     display: flex;
     flex-wrap: wrap;
    padding: 2%;
+
    & label {
     flex-basis: calc(30% - 1px);
    }
@@ -511,8 +511,7 @@ legend {
     font-size: smaller;
 }
 
-
-/* ======= Login ========*/
+/* ======= Login ======== */
 
 .outer-wrapper {
     display: block;
@@ -532,7 +531,7 @@ legend {
     padding: 30px 35px;
     backdrop-filter: blur(20px);
     backface-visibility: visible;
-    box-shadow: 0 0 10px rgba(255, 254, 254, 0.1);
+    box-shadow: 0 0 10px rgba(255, 254, 254, 10%);
 }
 
 .wrapper h1 {
@@ -553,7 +552,7 @@ legend {
     background: transparent;
     border: none;
     outline: none;
-    border: 1px solid rgba(169, 4, 76, 0.576);
+    border: 1px solid rgba(169, 4, 76, 57.6%);
     border-radius: 10px;
     font-size: 16px;
     color: var(--dark-purple);
@@ -575,6 +574,10 @@ legend {
     font-weight: 600;
 }
 
+input:invalid {
+    border-color: var(--dark-purple);
+}
+
 .remember-forgot label input {
     accent-color: var(--dark-purple);
     margin-right: 3px;
@@ -583,6 +586,7 @@ legend {
 .remember-forgot a {
     color: var(--dark-purple);
     text-decoration: none;
+    
     &:hover {
         text-decoration: underline;
     }
@@ -597,7 +601,7 @@ legend {
     border: none;
     outline: none;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 10%);
     cursor: pointer;
     font-size: 22px;
     font-weight: 500;
@@ -607,9 +611,7 @@ legend {
     text-decoration: none;
 }
 
-input:invalid {
-    border-color: var(--dark-purple);
-}
+
 
 input:focus:invalid {
     outline: none;
@@ -645,7 +647,7 @@ input:focus:invalid {
     flex-wrap: wrap;
     align-items: center;
     padding: 0 1%;
-    background-color: hsl(288, 69%, 90%);
+    background-color: hsl(288deg, 69%, 90%);
     opacity: 1;
     transition: opacity .5s ease-out;
 }
@@ -678,6 +680,7 @@ input:focus:invalid {
     font-size: 18px;
     box-shadow: 0 0 5px white;
     display: flex;
+    
     & li {
         list-style-position: inside;
         margin-bottom: 10px;
@@ -689,6 +692,7 @@ input:focus:invalid {
 #note {
    margin-left: -35px;
 }
+
 .notes-container ul  {
     display: flex;
     flex-wrap: wrap;
@@ -710,7 +714,6 @@ footer {
     display: block;
     margin-inline: auto;
     background-color: var(--lt);
-    /* margin-top: -20px; */
     padding: 0.2em 1%;
    
     & p {
@@ -720,13 +723,11 @@ footer {
     }
 }
 
-     
-/* ============== Mobile View ================*/
+/* ============== Mobile View ================ */
 @media (width < 460px) {
-
     html {
-        background-image: none;
-        background: var(--light-purple);
+        /* background-image: none; */
+        background: var(--light-purple) none;
     }
 
     .logo-img {
